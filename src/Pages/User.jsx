@@ -149,7 +149,7 @@ const User = () => {
                     <td className="px-2 py-3 text-center">65000</td>
                     <td className="px-2 py-3 text-center">450000</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/totalusers">View Details</Link>
+                        <Link to="/totalusers" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View Details</Link>
                     </td>
                 </tr>
 
@@ -161,7 +161,7 @@ const User = () => {
                     <td className="px-2 py-3 text-center">980</td>
                     <td className="px-2 py-3 text-center">6750</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/roleassignment">View Details</Link>
+                        <Link to="/roleassignment" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View Details</Link>
                     </td>
                 </tr>
 
@@ -173,7 +173,7 @@ const User = () => {
                     <td className="px-2 py-3 text-center">140</td>
                     <td className="px-2 py-3 text-center">1200</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/useractivities">View Details</Link>
+                        <Link to="/useractivities" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View Details</Link>
                     </td>
                 </tr>
                 </tbody>

@@ -149,7 +149,7 @@ const Content = () => {
                     <td className="px-2 py-3 text-center">65000</td>
                     <td className="px-2 py-3 text-center">450000</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/totalproducts">View</Link>
+                        <Link to="/totalproducts" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View</Link>
                     </td>
                 </tr>
                 </tbody>

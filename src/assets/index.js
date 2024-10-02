@@ -51,6 +51,9 @@ import invoice from "./invoice.png";
 import chart from "./chart.png";
 import checklist from "./checklist.png";
 import workhistory from "./workhistory.png";
+import storeremove from "./storeremove.png";
+import delete1 from "./delete1.png";
+import saddizzy from "./saddizzy.png";
 
 
 export {
@@ -107,5 +110,8 @@ export {
     checklist,
     workhistory,
     chart,
+    storeremove,
+    delete1,
+    saddizzy,
 
 }

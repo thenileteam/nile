@@ -153,7 +153,7 @@ const Dashboard = () => {
                     <td className="px-2 py-3 text-center">$85000</td>
                     <td className="px-2 py-3 text-center">$450000</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/allorders">View Details</Link>
+                        <Link to="/allorders" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View Details</Link>
                     </td>
                 </tr>
 
@@ -165,7 +165,7 @@ const Dashboard = () => {
                     <td className="px-2 py-3 text-center">980</td>
                     <td className="px-2 py-3 text-center">6750</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/neworders">View Orders</Link>
+                        <Link to="/neworders" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View Orders</Link>
                     </td>
                 </tr>
 
@@ -177,7 +177,7 @@ const Dashboard = () => {
                     <td className="px-2 py-3 text-center">140</td>
                     <td className="px-2 py-3 text-center">1200</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/pendingorders">View</Link>
+                        <Link to="/pendingorders" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View</Link>
                     </td>
                 </tr>
 
@@ -189,7 +189,7 @@ const Dashboard = () => {
                     <td className="px-2 py-3 text-center">140</td>
                     <td className="px-2 py-3 text-center">5550</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/completedorders">View</Link>
+                        <Link to="/completedorders" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View</Link>
                     </td>
                 </tr>
 
@@ -201,7 +201,7 @@ const Dashboard = () => {
                     <td className="px-2 py-3 text-center">830</td>
                     <td className="px-2 py-3 text-center">300</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/cancelledorders">View</Link>
+                        <Link to="/cancelledorders" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View</Link>
                     </td>
                 </tr>
 
@@ -213,7 +213,7 @@ const Dashboard = () => {
                     <td className="px-2 py-3 text-center">$65000</td>
                     <td className="px-2 py-3 text-center">3200 Units</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/bestsellingproduct">View</Link>
+                        <Link to="/bestsellingproduct" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View</Link>
                     </td>
                 </tr>
 
@@ -225,7 +225,7 @@ const Dashboard = () => {
                     <td className="px-2 py-3 text-center">$65000</td>
                     <td className="px-2 py-3 text-center">120</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/lowinventory">View</Link>
+                        <Link to="/lowinventory" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View</Link>
                     </td>
                 </tr>
                 </tbody>

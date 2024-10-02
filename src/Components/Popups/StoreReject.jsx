@@ -1,13 +1,36 @@
 import React, { useState } from 'react'
-import { cancel } from '../../assets';
+import { cancel, saddizzy } from '../../assets';
 
 const StoreReject = () => {
-    // State to control the popup visibility
+    // State to control the main popup visibility
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  
+  // State to control the final confirmation visibility
+  const [isFinalConfirmationOpen, setIsFinalConfirmationOpen] = useState(false);
+  
+  // State to control whether the fade-out animation should play
+  const [isFadingOut, setIsFadingOut] = useState(false);
 
-  // Function to toggle the popup visibility
+  // Function to toggle the main popup visibility
   const togglePopup = () => {
-      setIsPopupOpen(!isPopupOpen);
+    setIsPopupOpen(!isPopupOpen);
+  };
+
+  // Function to handle the "Yes" button click
+  const handleYesClick = () => {
+    setIsPopupOpen(false); // Close the main popup
+    setIsFinalConfirmationOpen(true); // Show the final confirmation popup
+
+    // Automatically start the fade-out after a short delay
+    setTimeout(() => {
+      setIsFadingOut(true); // Trigger fade-out animation
+    }, 2500); // Show the final confirmation for 2.5 seconds before fading out
+
+    // Close the final confirmation popup after the fade-out completes (300ms)
+    setTimeout(() => {
+      setIsFinalConfirmationOpen(false); // Fully close the popup
+      setIsFadingOut(false); // Reset fade state
+    }, 500); // Total time = 2.5 seconds + 0.5 seconds for fade-out
   };
   return (
     <>
@@ -30,9 +53,9 @@ const StoreReject = () => {
                     </div>
 
                     <div className="flex items-center justify-center gap-28">
-                        {/* Cancel Button */}
+                        {/* Yes Button */}
                         <button
-                        onClick={togglePopup}
+                        onClick={handleYesClick}
                         type="button"
                         >
                         <div className=' flex mt-10'>
@@ -42,7 +65,7 @@ const StoreReject = () => {
                         </div>
                         </button>
 
-                        {/* Cancel Button */}
+                        {/* No Button */}
                         <button
                         onClick={togglePopup}
                         type="button"
@@ -57,6 +80,21 @@ const StoreReject = () => {
                 </div>
             </div>
         )}
+
+        {/* Final Confirmation Modal with Fade-Out Animation */}
+      {isFinalConfirmationOpen && (
+        <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 
+          ${isFadingOut ? 'opacity-0 transition-opacity duration-500' : 'opacity-100 transition-opacity duration-500'}`}>
+          <div className="bg-white p-6 rounded-lg shadow-lg max-w-[200px] w-full relative">
+            <div>
+              <h1 className='text-[16px] font-bold text-[#333333]'>Store Rejected</h1>
+            </div>
+            <div className='flex justify-center mt-5'>
+              <img src={saddizzy} alt="" />
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }

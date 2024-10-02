@@ -149,7 +149,7 @@ const Store = () => {
                     <td className="px-2 py-3 text-center">65000</td>
                     <td className="px-2 py-3 text-center">450000</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/allstore">View Details</Link>
+                        <Link to="/allstore" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View Details</Link>
                     </td>
                 </tr>
 
@@ -161,7 +161,7 @@ const Store = () => {
                     <td className="px-2 py-3 text-center">980</td>
                     <td className="px-2 py-3 text-center">6750</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/storeapprovals">View Details</Link>
+                        <Link to="/storeapprovals" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View Details</Link>
                     </td>
                 </tr>
 
@@ -173,7 +173,7 @@ const Store = () => {
                     <td className="px-2 py-3 text-center">980</td>
                     <td className="px-2 py-3 text-center">6750</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/storeanalytics">View Details</Link>
+                        <Link to="/storeanalytics" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View Details</Link>
                     </td>
                 </tr>
 
@@ -185,7 +185,7 @@ const Store = () => {
                     <td className="px-2 py-3 text-center">980</td>
                     <td className="px-2 py-3 text-center">6750</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/shipment">View Details</Link>
+                        <Link to="/shipment" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View Details</Link>
                     </td>
                 </tr>
                 </tbody>

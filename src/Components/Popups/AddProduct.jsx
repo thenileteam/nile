@@ -173,7 +173,7 @@ const AddProduct = () => {
             </form>
           </div>
         </div>
-        )};
+        )}
     </>
   );
 };
