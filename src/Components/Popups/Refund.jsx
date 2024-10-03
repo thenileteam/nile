@@ -169,13 +169,17 @@ const Refund = () => {
               <div className="flex justify-center gap-4 mt-16">
                 {/* Cancel Button */}
                 <button
-                  className="px-2 py-2 bg-[#f5f5f5] border-gray-500 border-2 text-black font-semibold rounded-md shadow-lg"
+                  className="px-2 py-2 hover:bg-[#f5f5f5] bg-[#333333] border-gray-500 border text-[#ffffff] font-medium rounded-md shadow-lg hover:text-[#333333] transition ease-out duration-700"
                   onClick={showConfirmation}
                   type="button"
                 >
                   <div className='flex items-center gap-1'>
-                    <img src={moneyreceive} alt="" />
-                    <p className='text-[#333333] font-bold'>Refund Now</p>
+                  <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12.502 9.00781C11.3974 9.00781 10.502 9.67938 10.502 10.5078C10.502 11.3362 11.3974 12.0078 12.502 12.0078C13.6065 12.0078 14.502 12.6794 14.502 13.5078C14.502 14.3362 13.6065 15.0078 12.502 15.0078M12.502 9.00781C13.3728 9.00781 14.1136 9.42521 14.3881 10.0078M12.502 9.00781V8.00781M12.502 15.0078C11.6311 15.0078 10.8903 14.5904 10.6158 14.0078M12.502 15.0078V16.0078" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M13.5 2.50781C13.5 2.50781 13.1839 2.50781 12.5 2.50781C8.02166 2.50781 5.78249 2.50781 4.39124 3.89906C3 5.2903 3 7.52947 3 12.0078C3 16.4861 3 18.7253 4.39124 20.1166C5.78249 21.5078 8.02166 21.5078 12.5 21.5078C16.9783 21.5078 19.2175 21.5078 20.6088 20.1166C22 18.7253 22 16.4861 22 12.0078C22 11.3239 22 11.0078 22 11.0078" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M21.9883 2.49219L17.8125 6.67039M16.9883 3.01395L17.1065 6.10544C17.1065 6.83408 17.5416 7.28807 18.3341 7.34533L21.4581 7.49219" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                    <p>Refund Now</p>
                   </div>
                 </button>
               </div>

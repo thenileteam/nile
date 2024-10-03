@@ -43,7 +43,7 @@ const FinanceRefund = () => {
           </div>
         </button>
 
-
+        {/* Initial Popup */}
         {isPopupOpen && (
             <div className='fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50'>
                 <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full relative">
@@ -59,19 +59,19 @@ const FinanceRefund = () => {
                         type="button"
                         >
                         <div className=' flex mt-10'>
-                            <h1 className='text-[#333333] flex font-bold gap-1 items-center border-[#333333] border-2 p-2 px-6 rounded-md'>
+                            <h1 className='text-[#333333] flex font-bold gap-1 items-center hover:border-[#ffffff] hover:bg-[#E2E8F0] transition ease-out duration-500 border-[#333333] border-2 p-2 px-6 rounded-md'>
                                 Yes
                             </h1>
                         </div>
                         </button>
 
-                        {/* Cancel Button */}
+                        {/* No Button */}
                         <button
                         onClick={togglePopup}
                         type="button"
                         >
                         <div className=' flex mt-10'>
-                            <h1 className='text-[#ffffff] flex font-bold gap-1 items-center border-[#333333] bg-[#333333] border-2 p-2 px-6 rounded-md'>
+                            <h1 className='text-[#ffffff] hover:text-[#333333] transition ease-out duration-700 flex font-bold gap-1 items-center border-[#333333] hover:bg-[#E2E8F0] bg-[#333333] border-2 p-2 px-6 rounded-md'>
                                 No
                             </h1>
                         </div>
@@ -83,7 +83,7 @@ const FinanceRefund = () => {
 
 
         {/* Final Confirmation Modal with Fade-Out Animation */}
-      {isFinalConfirmationOpen && (
+        {isFinalConfirmationOpen && (
         <div className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 
           ${isFadingOut ? 'opacity-0 transition-opacity duration-500' : 'opacity-100 transition-opacity duration-500'}`}>
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-[250px] w-full relative">

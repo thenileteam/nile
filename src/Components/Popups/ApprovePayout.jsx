@@ -59,7 +59,7 @@ const ApprovePayout = () => {
                         type="button"
                         >
                         <div className=' flex mt-10'>
-                            <h1 className='text-[#333333] flex font-bold gap-1 items-center border-[#333333] border-2 p-2 px-6 rounded-md'>
+                            <h1 className='text-[#333333] flex font-bold gap-1 items-center hover:border-[#ffffff] hover:bg-[#E2E8F0] transition ease-out duration-500 border-[#333333] border-2 p-2 px-6 rounded-md'>
                                 Yes
                             </h1>
                         </div>
@@ -71,7 +71,7 @@ const ApprovePayout = () => {
                         type="button"
                         >
                         <div className=' flex mt-10'>
-                            <h1 className='text-[#ffffff] flex font-bold gap-1 items-center border-[#333333] bg-[#333333] border-2 p-2 px-6 rounded-md'>
+                            <h1 className='text-[#ffffff] hover:text-[#333333] transition ease-out duration-700 flex font-bold gap-1 items-center border-[#333333] hover:bg-[#E2E8F0] bg-[#333333] border-2 p-2 px-6 rounded-md'>
                                 No
                             </h1>
                         </div>
