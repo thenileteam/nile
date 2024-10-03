@@ -54,6 +54,7 @@ import workhistory from "./workhistory.png";
 import storeremove from "./storeremove.png";
 import delete1 from "./delete1.png";
 import saddizzy from "./saddizzy.png";
+import notification1 from "./notification1.png";
 
 
 export {
@@ -113,5 +114,6 @@ export {
     storeremove,
     delete1,
     saddizzy,
+    notification1,
 
 }

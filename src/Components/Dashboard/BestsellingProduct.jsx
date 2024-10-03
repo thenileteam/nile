@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { add, arrowleft, cancel, download, edit, image, nilelogo, notification, preference, refund, saletag, saletag2, storeverified, transaction, trash, uptown, vector } from '../../assets';
+import { add, arrowleft, download, image, nilelogo, notification, preference, saletag, saletag2, storeverified, transaction, trash, uptown } from '../../assets';
 import { Link } from 'react-router-dom';
 import Links from '../../Links';
 import Edit from '../Popups/Edit';
@@ -100,7 +100,7 @@ const BestsellingProduct = () => {
                         </span>
                     </div>
                     <div>
-                        <img src={notification} alt="" />
+                        <Link to="/notification"><img src={notification} alt="" /></Link>
                     </div>
                     <div>
                         <img src={image} alt="" />

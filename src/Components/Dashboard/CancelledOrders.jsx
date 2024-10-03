@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { arrowleft, cancel, download, edit, image, nilelogo, notification, preference, refund, saletag, saletag2, storeverified, transaction, uptown, vector } from '../../assets';
+import { arrowleft, download, image, nilelogo, notification, preference, refund, saletag, saletag2, storeverified, transaction, uptown } from '../../assets';
 import { Link } from 'react-router-dom';
 import Links from '../../Links';
 import Refund from '../Popups/Refund'
@@ -100,7 +100,7 @@ const CancelledOrders = () => {
                         </span>
                     </div>
                     <div>
-                        <img src={notification} alt="" />
+                        <Link to="/notification"><img src={notification} alt="" /></Link>
                     </div>
                     <div>
                         <img src={image} alt="" />

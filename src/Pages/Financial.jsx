@@ -95,7 +95,7 @@ const Financial = () => {
                         </span>
                     </div>
                     <div>
-                        <img src={notification} alt="" />
+                        <Link to="/notification"><img src={notification} alt="" /></Link>
                     </div>
                     <div>
                         <img src={image} alt="" />

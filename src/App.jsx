@@ -27,6 +27,7 @@ import TotalInvoice from './Components/Financial Management/TotalInvoice';
 import FinancialReports from './Components/Financial Management/FinancialReports';
 import Content from './Pages/Content';
 import TotalProduct from './Components/Content Managment/TotalProduct';
+import Notification from './Pages/Notification';
 
 const App = () => {
   
@@ -63,6 +64,7 @@ const App = () => {
         <Route path='/financialreport' element={<FinancialReports />}/>
         <Route path='/contentmanagement' element={<Content />}/>
         <Route path='/totalproducts' element={<TotalProduct />}/>
+        <Route path='/notification' element={<Notification />}/>
       </Routes>
       </div>
     </Router>
