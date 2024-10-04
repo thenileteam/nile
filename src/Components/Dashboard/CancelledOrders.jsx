@@ -158,6 +158,12 @@ const CancelledOrders = () => {
                     <th className="px-2 py-3 font-bold text-[14px] text-center">Payment Status</th>
                     <th className="px-2 py-3 font-bold text-[14px] text-center">Actions</th>
                     <th className="px-2 py-3 font-bold text-[14px] text-center flex items-center gap-2">Bulk Action
+                        <input
+                            type="checkbox"
+                            id="MarketingAccept"
+                            name="marketing_accept"
+                            className="size-5 rounded-md bg-white shadow-sm"
+                        />
                       <div className='flex items-baseline gap-1'>
                         <img src={refund} alt="" />
                       </div>

@@ -150,6 +150,14 @@ const TotalInvoice = () => {
                     <th className="px-2 py-3 font-bold text-[17px] text-center">Status</th>
                     <th className="px-2 py-3 font-bold text-[17px] text-center">Actions</th>
                     <th className="px-2 py-3 font-bold text-[17px] text-center">Bulk Action
+                        <div>
+                        <input
+                            type="checkbox"
+                            id="MarketingAccept"
+                            name="marketing_accept"
+                            className="size-5 rounded-md bg-white shadow-sm"
+                        />
+                        </div>
                       <div className=''>
                         <p className='text-[12px] text-[#7E76BC]'>Download PDF</p>
                         <p className='text-[12px] text-[#7E76BC]'>Send Reminder</p>

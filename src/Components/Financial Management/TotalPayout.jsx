@@ -155,6 +155,12 @@ const TotalPayout = () => {
                         <img src={approve} alt="" />
                         <img src={cancel} alt="" />
                       </div>
+                        <input
+                            type="checkbox"
+                            id="MarketingAccept"
+                            name="marketing_accept"
+                            className="size-5 rounded-md bg-white shadow-sm"
+                        />
                     </th>
                 </tr>
                 </thead>

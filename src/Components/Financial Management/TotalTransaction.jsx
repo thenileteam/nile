@@ -153,6 +153,12 @@ const TotalTransaction = () => {
                       <div>
                         <p className='text-[#7E76BC]'>Refund Now</p>
                       </div>
+                        <input
+                            type="checkbox"
+                            id="MarketingAccept"
+                            name="marketing_accept"
+                            className="size-5 rounded-md bg-white shadow-sm"
+                        />
                     </th>
                 </tr>
                 </thead>

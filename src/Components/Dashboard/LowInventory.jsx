@@ -155,6 +155,12 @@ const LowInventory = () => {
                     <th className="px-2 py-3 font-bold text-[14px] text-center">Reorder Point</th>
                     <th className="px-2 py-3 font-bold text-[14px] text-center">Actions</th>
                     <th className="px-2 py-3 font-bold text-[14px] text-center flex items-center justify-center gap-1">Bulk Action
+                        <input
+                            type="checkbox"
+                            id="MarketingAccept"
+                            name="marketing_accept"
+                            className="size-5 rounded-md bg-white shadow-sm"
+                        />
                       <div>
                         <img src={trash} alt="" />
                       </div>
