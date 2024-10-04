@@ -28,6 +28,8 @@ import FinancialReports from './Components/Financial Management/FinancialReports
 import Content from './Pages/Content';
 import TotalProduct from './Components/Content Managment/TotalProduct';
 import Notification from './Pages/Notification';
+import ForgotPassword from './Pages/ForgotPassword';
+import EditProfile from './Pages/EditProfile';
 
 const App = () => {
   
@@ -65,6 +67,8 @@ const App = () => {
         <Route path='/contentmanagement' element={<Content />}/>
         <Route path='/totalproducts' element={<TotalProduct />}/>
         <Route path='/notification' element={<Notification />}/>
+        <Route path='/forgotpassword' element={<ForgotPassword />}/>
+        <Route path='/profile' element={<EditProfile />}/>
       </Routes>
       </div>
     </Router>

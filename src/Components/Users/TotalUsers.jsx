@@ -98,7 +98,7 @@ const TotalUsers = () => {
                         <Link to="/notification"><img src={notification} alt="" /></Link>
                     </div>
                     <div>
-                        <img src={image} alt="" />
+                        <Link to="/profile"><img src={image} alt="" /></Link>
                     </div>
                 </div>
             </div>
