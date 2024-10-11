@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { download, image, nilelogo, notification, saletag, storeverified, transaction, uptown, vector } from '../assets';
+import { download, image, nilelogo, notification, saletag, storeverified, transaction, uptown } from '../assets';
 import { Link } from 'react-router-dom';
 import Links from '../Links';
 
