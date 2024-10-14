@@ -173,7 +173,7 @@ const AllOrders = () => {
                             <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Customer Name')}>Customer Name</h1>
                             <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Order ID')}>Order ID</h1>
                             <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Store Name')}>Store Name</h1>
-                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Product Name')}>Product Name</h1>
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Product Name')}>Product Name</h1>
                             <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Order Status')}>Order Status</h1>
                             <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Payment Status')}>Payment Status</h1>
                         </div>

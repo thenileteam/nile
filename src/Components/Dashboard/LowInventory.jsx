@@ -86,7 +86,7 @@ const LowInventory = () => {
                     <img src={saletag2} alt="" />
                     <h1 className="text-[32px] font-bold">Low Inventory</h1>
                 </div>
-                <div className='flex items-center gap-10 ml-[400px]'>
+                <div className='flex items-center gap-10 ml-[375px]'>
                     <div className="relative">
                         <label htmlFor="Search" className="sr-only"> Search </label>
 

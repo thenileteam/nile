@@ -86,7 +86,7 @@ const CancelledOrders = () => {
                     <img src={saletag2} alt="" />
                     <h1 className="text-[32px] font-bold">Cancelled Orders</h1>
                 </div>
-                <div className='flex items-center gap-10 ml-[350px]'>
+                <div className='flex items-center gap-10 ml-[330px]'>
                     <div className="relative">
                         <label htmlFor="Search" className="sr-only"> Search </label>
 

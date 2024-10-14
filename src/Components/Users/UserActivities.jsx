@@ -158,12 +158,11 @@ const UserActivities = () => {
                 {filterDropdownOpen && (
                     <div className="absolute right-10 mt-2 w-[230px] rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none p-5" style={{top: '100%'}}>
                         <div className="py-1 space-y-3" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Customer Name')}>Customer Name</h1>
-                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Order ID')}>Order ID</h1>
-                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Store Name')}>Store Name</h1>
-                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Product Name')}>Product Name</h1>
-                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Order Status')}>Order Status</h1>
-                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Payment Status')}>Payment Status</h1>
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input User ID')}>User ID</h1>
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Status')}>Status</h1>
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Action')}>Action</h1>
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('DD/MM/YYR')}>Date</h1>
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Time in 24hours')}>Time</h1>
                         </div>
                     </div>
                 )}
