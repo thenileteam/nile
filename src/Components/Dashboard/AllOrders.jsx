@@ -423,7 +423,8 @@ const AllOrders = () => {
                 </tbody>
             </table>
             </div>
-
+            
+            {/*Pagination*/}
             <div>
                 <ol className="flex justify-center gap-3 text-xs font-medium mt-3">
                 <li>
