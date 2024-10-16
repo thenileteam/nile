@@ -3,6 +3,7 @@ import { arrowleft, bitcoin, creditcard, download, image, nilelogo, notification
 import { Link } from 'react-router-dom';
 import Links from '../../Links';
 import SendReminder from '../Popups/SendReminder';
+import DownloadPdf from '../Popups/DownloadPdf';
 
 const TotalInvoice = () => {
 
@@ -279,7 +280,7 @@ const TotalInvoice = () => {
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$200</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">25/09/2024</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">Paid</td>
-                    <td className="px-2 py-3 text-[#7E76BC] text-center">Download PDF</td>
+                    <td className="px-2 py-3 text-[#7E76BC] text-center"><DownloadPdf /></td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center gap-3">
                         <input
                             type="checkbox"
@@ -297,7 +298,7 @@ const TotalInvoice = () => {
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$200</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">25/09/2024</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">Paid</td>
-                    <td className="px-2 py-3 text-[#7E76BC] text-center">Download PDF</td>
+                    <td className="px-2 py-3 text-[#7E76BC] text-center"><DownloadPdf /></td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center gap-3">
                         <input
                             type="checkbox"
@@ -315,7 +316,7 @@ const TotalInvoice = () => {
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$200</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">25/09/2024</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">Paid</td>
-                    <td className="px-2 py-3 text-[#7E76BC] text-center">Download PDF</td>
+                    <td className="px-2 py-3 text-[#7E76BC] text-center"><DownloadPdf /></td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center gap-3">
                         <input
                             type="checkbox"
@@ -333,7 +334,7 @@ const TotalInvoice = () => {
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$200</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">25/09/2024</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">Paid</td>
-                    <td className="px-2 py-3 text-[#7E76BC] text-center">Download PDF</td>
+                    <td className="px-2 py-3 text-[#7E76BC] text-center"><DownloadPdf /></td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center gap-3">
                         <input
                             type="checkbox"
