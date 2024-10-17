@@ -95,10 +95,10 @@ const Financial = () => {
                         </span>
                     </div>
                     <div>
-                        <img src={notification} alt="" />
+                        <Link to="/notification"><img src={notification} alt="" /></Link>
                     </div>
                     <div>
-                        <img src={image} alt="" />
+                        <Link to="/profile"><img src={image} alt="" /></Link>
                     </div>
                 </div>
             </div>
@@ -150,7 +150,7 @@ const Financial = () => {
                     <td className="px-2 py-3 text-center">65000</td>
                     <td className="px-2 py-3 text-center">450000</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/totaltransactions">View Details</Link>
+                        <Link to="/totaltransactions" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View Details</Link>
                     </td>
                 </tr>
 
@@ -162,7 +162,7 @@ const Financial = () => {
                     <td className="px-2 py-3 text-center">980</td>
                     <td className="px-2 py-3 text-center">6750</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/totalpayouts">View Details</Link>
+                        <Link to="/totalpayouts" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View Details</Link>
                     </td>
                 </tr>
 
@@ -174,7 +174,7 @@ const Financial = () => {
                     <td className="px-2 py-3 text-center">980</td>
                     <td className="px-2 py-3 text-center">6750</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/totalinvoice">View Details</Link>
+                        <Link to="/totalinvoice" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View Details</Link>
                     </td>
                 </tr>
 
@@ -186,7 +186,7 @@ const Financial = () => {
                     <td className="px-2 py-3 text-center">980</td>
                     <td className="px-2 py-3 text-center">6750</td>
                     <td className="px-2 py-3 text-center bg-[#F5F5F5] text-[#7E76BC] font-extrabold">
-                        <Link to="/financialreport">View Details</Link>
+                        <Link to="/financialreport" className="hover:border-[#7E76BC] border-[#f5f5f5] border-b-2 transition duration-300 underline-offset-4 decoration-[2px] inline-block hover:-translate-x-1">View Details</Link>
                     </td>
                 </tr>
                 </tbody>

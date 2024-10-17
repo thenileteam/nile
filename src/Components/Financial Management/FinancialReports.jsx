@@ -2,13 +2,33 @@ import React, { useState } from 'react'
 import { arrowleft, bitcoin, creditcard, download, image, nilelogo, notification, preference, profit, wallet2 } from '../../assets';
 import { Link } from 'react-router-dom';
 import Links from '../../Links';
+import DownloadPdf from '../Popups/DownloadPdf';
 
 const FinancialReports = () => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
+    const [popupVisible, setPopupVisible] = useState(false);
+    const [selectedText, setSelectedText] = useState('');
 
     const closeSidebar = () => {
         if (sidebarOpen) setSidebarOpen(false);
+    };
+
+    const toggleFilterDropdown = () => {
+        setFilterDropdownOpen(!filterDropdownOpen);
+    };
+
+    const handleFilterClick = (text) => {
+        // Close the dropdown and show the popup with the selected text
+        setFilterDropdownOpen(false);
+        setSelectedText(text);
+        setPopupVisible(true);
+    };
+
+    const closePopup = () => {
+        setPopupVisible(false);
+        setSelectedText('');
     };
   return (
     <>
@@ -24,7 +44,7 @@ const FinancialReports = () => {
 
         {/* Sidebar */}
         <div
-            className={`fixed top-0 left-0 h-full w-[290px] z-10 bg-[#F5F5F5] border-2 text-white p-5 transition-transform transform ${
+            className={`fixed top-0 left-0 h-full w-[290px] z-20 bg-[#F5F5F5] border-2 text-white p-5 transition-transform transform ${
             sidebarOpen ? 'translate-x-0' : '-translate-x-full'
             } lg:translate-x-0`}
         >
@@ -34,7 +54,7 @@ const FinancialReports = () => {
 
         {/* Navbar */}
         <div className="flex-grow lg:ml-64">
-            <nav className="bg-gray-100 p-4 shadow-md flex items-center gap-5 fixed w-full">
+            <nav className="bg-gray-100 p-4 shadow-md flex items-center gap-5 fixed w-full z-10">
             <button
                 className="lg:hidden text-gray-800 z-20"
                 onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -66,7 +86,7 @@ const FinancialReports = () => {
                     <img src={wallet2} alt="" />
                     <h1 className="text-[32px] font-bold">Financial Reports</h1>
                 </div>
-                <div className='flex items-center gap-10 ml-[350px]'>
+                <div className='flex items-center gap-10 ml-[330px]'>
                     <div className="relative">
                         <label htmlFor="Search" className="sr-only"> Search </label>
 
@@ -99,10 +119,10 @@ const FinancialReports = () => {
                         </span>
                     </div>
                     <div>
-                        <img src={notification} alt="" />
+                        <Link to="/notification"><img src={notification} alt="" /></Link>
                     </div>
                     <div>
-                        <img src={image} alt="" />
+                        <Link to="/profile"><img src={image} alt="" /></Link>
                     </div>
                 </div>
             </div>
@@ -132,11 +152,44 @@ const FinancialReports = () => {
                 <div className="border-2 border-white shadow-[0px_4px_10px_rgba(0,0,0,0.3)]"></div>
             </div>
 
-            <div className='flex items-center justify-end px-20 mt-10'>
+            <div className='flex items-center justify-end px-20 mt-10 relative'>
                 <h1 className='text-[#333333] font-bold text-[16px]'>Filter By :</h1>
-                <img src={preference} alt="" />
+                <button 
+                    onClick={toggleFilterDropdown}
+                    className="flex items-center focus:outline-none"
+                >
+                    <img src={preference} alt="Filter" className="cursor-pointer" />
+                </button>
+
+                {filterDropdownOpen && (
+                    <div className="absolute right-10 mt-2 w-[230px] rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none p-5" style={{top: '100%'}}>
+                        <div className="py-1 space-y-3" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Amount')}>Revenue</h1>
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Amount')}>Expenses</h1>
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Amount')}>Profits</h1>
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Store Name')}>Store</h1>
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Year')}>Year</h1>
+                        </div>
+                    </div>
+                )}
             </div>
 
+           {/* Popup Component */}
+           {popupVisible && (
+                <div className="absolute right-10 top-[430px] w-[230px] p-4 bg-white shadow-lg rounded-md">
+                    <input 
+                        type="text" 
+                        placeholder={selectedText} 
+                        className="mt-2 p-2 border rounded-md w-full" 
+                    />
+                    <button 
+                        onClick={closePopup} 
+                        className="mt-4 text-white bg-[#333333] p-2 font-bold px-5 rounded-md justify-center mx-auto flex"
+                    >
+                        Enter
+                    </button>
+                </div>
+            )}
 
             <div className="px-20">
             <table className=" w-full border-separate border-spacing-y-5">
@@ -152,6 +205,12 @@ const FinancialReports = () => {
                       <div>
                         <p className='text-[12px] text-[#7E76BC]'>Download PDF</p>
                       </div>
+                        <input
+                            type="checkbox"
+                            id="MarketingAccept"
+                            name="marketing_accept"
+                            className="size-5 rounded-md bg-white shadow-sm"
+                        />
                     </th>
                 </tr>
                 </thead>
@@ -163,7 +222,7 @@ const FinancialReports = () => {
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$350</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$2650</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">2024</td>
-                    <td className="px-2 py-3 text-[#7E76BC] text-center">Download PDF</td>
+                    <td className="px-2 py-3 text-[#7E76BC] text-center"><DownloadPdf /></td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center gap-3">
                         <input
                             type="checkbox"
@@ -181,7 +240,7 @@ const FinancialReports = () => {
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$350</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$2650</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">2024</td>
-                    <td className="px-2 py-3 text-[#7E76BC] text-center">Download PDF</td>
+                    <td className="px-2 py-3 text-[#7E76BC] text-center"><DownloadPdf /></td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center gap-3">
                         <input
                             type="checkbox"
@@ -199,7 +258,7 @@ const FinancialReports = () => {
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$350</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$2650</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">2024</td>
-                    <td className="px-2 py-3 text-[#7E76BC] text-center">Download PDF</td>
+                    <td className="px-2 py-3 text-[#7E76BC] text-center"><DownloadPdf /></td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center gap-3">
                         <input
                             type="checkbox"
@@ -217,7 +276,7 @@ const FinancialReports = () => {
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$350</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$2650</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">2024</td>
-                    <td className="px-2 py-3 text-[#7E76BC] text-center">Download PDF</td>
+                    <td className="px-2 py-3 text-[#7E76BC] text-center"><DownloadPdf /></td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center gap-3">
                         <input
                             type="checkbox"
@@ -235,7 +294,7 @@ const FinancialReports = () => {
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$350</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$2650</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">2024</td>
-                    <td className="px-2 py-3 text-[#7E76BC] text-center">Download PDF</td>
+                    <td className="px-2 py-3 text-[#7E76BC] text-center"><DownloadPdf /></td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center gap-3">
                         <input
                             type="checkbox"
@@ -253,7 +312,7 @@ const FinancialReports = () => {
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$350</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$2650</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">2024</td>
-                    <td className="px-2 py-3 text-[#7E76BC] text-center">Download PDF</td>
+                    <td className="px-2 py-3 text-[#7E76BC] text-center"><DownloadPdf /></td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center gap-3">
                         <input
                             type="checkbox"
@@ -271,7 +330,7 @@ const FinancialReports = () => {
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$350</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$2650</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">2024</td>
-                    <td className="px-2 py-3 text-[#7E76BC] text-center">Download PDF</td>
+                    <td className="px-2 py-3 text-[#7E76BC] text-center"><DownloadPdf /></td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center gap-3">
                         <input
                             type="checkbox"

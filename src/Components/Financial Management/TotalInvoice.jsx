@@ -3,13 +3,33 @@ import { arrowleft, bitcoin, creditcard, download, image, nilelogo, notification
 import { Link } from 'react-router-dom';
 import Links from '../../Links';
 import SendReminder from '../Popups/SendReminder';
+import DownloadPdf from '../Popups/DownloadPdf';
 
 const TotalInvoice = () => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [filterDropdownOpen, setFilterDropdownOpen] = useState(false);
+    const [popupVisible, setPopupVisible] = useState(false);
+    const [selectedText, setSelectedText] = useState('');
 
     const closeSidebar = () => {
         if (sidebarOpen) setSidebarOpen(false);
+    };
+
+    const toggleFilterDropdown = () => {
+        setFilterDropdownOpen(!filterDropdownOpen);
+    };
+
+    const handleFilterClick = (text) => {
+        // Close the dropdown and show the popup with the selected text
+        setFilterDropdownOpen(false);
+        setSelectedText(text);
+        setPopupVisible(true);
+    };
+
+    const closePopup = () => {
+        setPopupVisible(false);
+        setSelectedText('');
     };
   return (
     <>
@@ -25,7 +45,7 @@ const TotalInvoice = () => {
 
         {/* Sidebar */}
         <div
-            className={`fixed top-0 left-0 h-full w-[290px] z-10 bg-[#F5F5F5] border-2 text-white p-5 transition-transform transform ${
+            className={`fixed top-0 left-0 h-full w-[290px] z-20 bg-[#F5F5F5] border-2 text-white p-5 transition-transform transform ${
             sidebarOpen ? 'translate-x-0' : '-translate-x-full'
             } lg:translate-x-0`}
         >
@@ -35,7 +55,7 @@ const TotalInvoice = () => {
 
         {/* Navbar */}
         <div className="flex-grow lg:ml-64">
-            <nav className="bg-gray-100 p-4 shadow-md flex items-center gap-5 fixed w-full">
+            <nav className="bg-gray-100 p-4 shadow-md flex items-center gap-5 fixed w-full z-10">
             <button
                 className="lg:hidden text-gray-800 z-20"
                 onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -100,10 +120,10 @@ const TotalInvoice = () => {
                         </span>
                     </div>
                     <div>
-                        <img src={notification} alt="" />
+                        <Link to="/notification"><img src={notification} alt="" /></Link>
                     </div>
                     <div>
-                        <img src={image} alt="" />
+                        <Link to="/profile"><img src={image} alt="" /></Link>
                     </div>
                 </div>
             </div>
@@ -133,11 +153,44 @@ const TotalInvoice = () => {
                 <div className="border-2 border-white shadow-[0px_4px_10px_rgba(0,0,0,0.3)]"></div>
             </div>
 
-            <div className='flex items-center justify-end px-20 mt-10'>
+            <div className='flex items-center justify-end px-20 mt-10 relative'>
                 <h1 className='text-[#333333] font-bold text-[16px]'>Filter By :</h1>
-                <img src={preference} alt="" />
+                <button 
+                    onClick={toggleFilterDropdown}
+                    className="flex items-center focus:outline-none"
+                >
+                    <img src={preference} alt="Filter" className="cursor-pointer" />
+                </button>
+
+                {filterDropdownOpen && (
+                    <div className="absolute right-10 mt-2 w-[230px] rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-100 focus:outline-none p-5" style={{top: '100%'}}>
+                        <div className="py-1 space-y-3" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Invoice ID')}>Invoice ID</h1>
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Store Owner')}>Store Owner</h1>
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Amount')}>Amount</h1>
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('DD/MM/YYR')}>Dates</h1>
+                            <h1 className='text-[#6E6E6E] font-bold text-[16px] border-[#6E6E6E] border-2 p-2 rounded-lg cursor-pointer' onClick={() => handleFilterClick('Input Status')}>Status</h1>
+                        </div>
+                    </div>
+                )}
             </div>
 
+           {/* Popup Component */}
+           {popupVisible && (
+                <div className="absolute right-10 top-[430px] w-[230px] p-4 bg-white shadow-lg rounded-md">
+                    <input 
+                        type="text" 
+                        placeholder={selectedText} 
+                        className="mt-2 p-2 border rounded-md w-full" 
+                    />
+                    <button 
+                        onClick={closePopup} 
+                        className="mt-4 text-white bg-[#333333] p-2 font-bold px-5 rounded-md justify-center mx-auto flex"
+                    >
+                        Enter
+                    </button>
+                </div>
+            )}
 
             <div className="px-20">
             <table className=" w-full border-separate border-spacing-y-5">
@@ -150,6 +203,14 @@ const TotalInvoice = () => {
                     <th className="px-2 py-3 font-bold text-[17px] text-center">Status</th>
                     <th className="px-2 py-3 font-bold text-[17px] text-center">Actions</th>
                     <th className="px-2 py-3 font-bold text-[17px] text-center">Bulk Action
+                        <div>
+                        <input
+                            type="checkbox"
+                            id="MarketingAccept"
+                            name="marketing_accept"
+                            className="size-5 rounded-md bg-white shadow-sm"
+                        />
+                        </div>
                       <div className=''>
                         <p className='text-[12px] text-[#7E76BC]'>Download PDF</p>
                         <p className='text-[12px] text-[#7E76BC]'>Send Reminder</p>
@@ -219,7 +280,7 @@ const TotalInvoice = () => {
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$200</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">25/09/2024</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">Paid</td>
-                    <td className="px-2 py-3 text-[#7E76BC] text-center">Download PDF</td>
+                    <td className="px-2 py-3 text-[#7E76BC] text-center"><DownloadPdf /></td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center gap-3">
                         <input
                             type="checkbox"
@@ -237,7 +298,7 @@ const TotalInvoice = () => {
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$200</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">25/09/2024</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">Paid</td>
-                    <td className="px-2 py-3 text-[#7E76BC] text-center">Download PDF</td>
+                    <td className="px-2 py-3 text-[#7E76BC] text-center"><DownloadPdf /></td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center gap-3">
                         <input
                             type="checkbox"
@@ -255,7 +316,7 @@ const TotalInvoice = () => {
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$200</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">25/09/2024</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">Paid</td>
-                    <td className="px-2 py-3 text-[#7E76BC] text-center">Download PDF</td>
+                    <td className="px-2 py-3 text-[#7E76BC] text-center"><DownloadPdf /></td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center gap-3">
                         <input
                             type="checkbox"
@@ -273,7 +334,7 @@ const TotalInvoice = () => {
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">$200</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">25/09/2024</td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center">Paid</td>
-                    <td className="px-2 py-3 text-[#7E76BC] text-center">Download PDF</td>
+                    <td className="px-2 py-3 text-[#7E76BC] text-center"><DownloadPdf /></td>
                     <td className="px-2 py-3 text-[#6E6E6E] text-center gap-3">
                         <input
                             type="checkbox"

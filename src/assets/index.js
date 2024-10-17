@@ -39,6 +39,23 @@ import moneyreceive from "./moneyreceive.png";
 import tickdouble from "./tickdouble.png";
 import changeimage from "./changeimage.png";
 import addimage from "./addimage.png";
+import activity4 from "./activity4.png";
+import assignments from "./assignments.png";
+import geometricshapes from "./geometricshapes.png";
+import healthcare from "./healthcare.png";
+import userlist from "./userlist.png";
+import analysis from "./analysis.png";
+import storeadd from "./storeadd.png";
+import storeverified1 from "./storeverified1.png";
+import invoice from "./invoice.png";
+import chart from "./chart.png";
+import checklist from "./checklist.png";
+import workhistory from "./workhistory.png";
+import storeremove from "./storeremove.png";
+import delete1 from "./delete1.png";
+import saddizzy from "./saddizzy.png";
+import notification1 from "./notification1.png";
+import goback from "./goback.png";
 
 
 export {
@@ -83,4 +100,22 @@ export {
     tickdouble,
     changeimage,
     addimage,
+    activity4,
+    assignments,
+    geometricshapes,
+    healthcare,
+    userlist,
+    storeverified1,
+    analysis,
+    storeadd,
+    invoice,
+    checklist,
+    workhistory,
+    chart,
+    storeremove,
+    delete1,
+    saddizzy,
+    notification1,
+    goback,
+
 }
