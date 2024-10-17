@@ -5,7 +5,6 @@ import {
   bitcoin,
   cancel,
   creditcard,
-  download,
   image,
   nilelogo,
   notification,

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import {
-  add,
   arrowleft,
-  download,
   image,
   nilelogo,
   notification,

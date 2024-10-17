@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import {
-  add,
   arrowleft,
-  download,
-  edit,
   image,
   nilelogo,
   notification,
@@ -14,7 +11,6 @@ import {
   transaction,
   trash,
   uptown,
-  vector,
 } from "../../assets";
 import { Link } from "react-router-dom";
 import Links from "../../Links";

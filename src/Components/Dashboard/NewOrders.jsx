@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import {
   arrowleft,
   cancel,
-  download,
-  edit,
   image,
   nilelogo,
   notification,
@@ -14,7 +12,6 @@ import {
   storeverified,
   transaction,
   uptown,
-  vector,
 } from "../../assets";
 import { Link } from "react-router-dom";
 import Links from "../../Links";

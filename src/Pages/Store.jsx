@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import {
-  activity,
-  download,
   image,
   nilelogo,
   notification,
@@ -9,9 +7,6 @@ import {
   store1,
   store2,
   storeverified,
-  useraccount,
-  userswitch,
-  validation,
 } from "../assets";
 import { Link } from "react-router-dom";
 import Links from "../Links";
