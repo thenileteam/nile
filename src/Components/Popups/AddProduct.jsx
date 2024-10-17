@@ -52,8 +52,28 @@ const AddProduct = () => {
       {/* Button to trigger the popup */}
       <button onClick={togglePopup}>
         <div className=" flex mt-10">
-          <h1 className="text-[#333333] flex font-bold gap-1 items-center border-[#333333] border-2 p-2 rounded-md">
-            <img src={add} alt="" />
+          <h1 className="text-[#333333] hover:bg-[#333333] hover:text-[#ffffff] duration-500 flex font-bold gap-1 items-center border-[#333333] border-2 p-2 rounded-md">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="hover:text-[#ffffff]"
+            >
+              <path
+                d="M12 8V16M16 12H8"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+            </svg>
             Add Product
           </h1>
         </div>
@@ -62,6 +82,27 @@ const AddProduct = () => {
       {isPopupOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white p-16 rounded-lg shadow-lg max-w-3xl w-full relative ">
+            {/* Cancel Button in the top-right corner */}
+            <button
+              className="absolute top-16 right-4 text-gray-500 hover:text-gray-800"
+              onClick={() => setIsPopupOpen(false)}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+
             {/* Popup Content */}
             <form>
               <div className="grid grid-cols-2 gap-20">
@@ -227,8 +268,28 @@ const AddProduct = () => {
                 {/* Cancel Button */}
                 <button onClick={showConfirmation} type="button">
                   <div className="flex">
-                    <h1 className="text-[#333333] flex font-bold gap-1 items-center border-[#333333] border-2 p-2 rounded-md">
-                      <img src={add} alt="" />
+                    <h1 className="text-[#333333] hover:bg-[#333333] hover:text-[#ffffff] duration-500 flex font-bold gap-1 items-center border-[#333333] border-2 p-2 rounded-md">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="hover:text-[#ffffff]"
+                      >
+                        <path
+                          d="M12 8V16M16 12H8"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                        />
+                      </svg>
                       Add Product
                     </h1>
                   </div>
@@ -239,7 +300,7 @@ const AddProduct = () => {
         </div>
       )}
 
-    {/* Confirmation Modal */}
+      {/* Confirmation Modal */}
       {isConfirmationOpen && (
         <div
           className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300 ${
