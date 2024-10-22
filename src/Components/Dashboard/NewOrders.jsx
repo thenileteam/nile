@@ -158,21 +158,21 @@ const NewOrders = () => {
                   <h1 className="text-[#333333] text-[22px] font-bold mt-1">
                     50,0000
                   </h1>
-                  <p className="text-[#6E6E6E]">Total orders</p>
+                  <p className="text-[#6E6E6E]">Total Orders</p>
                 </div>
                 <div className="bg-[#FFFFFF] border-2 shadow-sm w-[216px] p-5 rounded-md">
                   <img src={storeverified} alt="" />
                   <h1 className="text-[#333333] text-[22px] font-bold mt-1">
                     50,0000
                   </h1>
-                  <p className="text-[#6E6E6E]">Total orders</p>
+                  <p className="text-[#6E6E6E]">Total Active Stores</p>
                 </div>
                 <div className="bg-[#FFFFFF] border-2 shadow-sm w-[216px] p-5 rounded-md">
                   <img src={transaction} alt="" />
                   <h1 className="text-[#333333] text-[22px] font-bold mt-1">
                     50,0000
                   </h1>
-                  <p className="text-[#6E6E6E]">Total orders</p>
+                  <p className="text-[#6E6E6E]">Total Transactions</p>
                 </div>
                 <div className="bg-[#FFFFFF] border-2 shadow-sm w-[216px] p-5 rounded-md">
                   <img src={uptown} alt="" />
