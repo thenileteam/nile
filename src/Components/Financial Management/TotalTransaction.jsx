@@ -3,7 +3,6 @@ import {
   arrowleft,
   bitcoin,
   creditcard,
-  download,
   image,
   nilelogo,
   notification,

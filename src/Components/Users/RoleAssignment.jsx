@@ -3,7 +3,6 @@ import {
   activity,
   arrowleft,
   cancel,
-  download,
   image,
   nilelogo,
   notification,
