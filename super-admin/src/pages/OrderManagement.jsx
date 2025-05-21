@@ -19,12 +19,10 @@ const OrderManagement = () => {
   const [showStatusDropdown, setShowStatusDropdown] = useState(false);
 
   return (
-    <div className="p-6">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">
-          Order Management
-        </h1>
-        <div className="flex gap-3 justify-end w-full sm:w-auto">
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-bold text-gray-800">Order Management</h2>
+        <div className="flex gap-3">
           <button className="bg-green-900 font-semi-bold text-white px-6 py-2 rounded-md">
             Export
           </button>
@@ -143,18 +141,20 @@ const OrderManagement = () => {
               </button>
               {showStatusDropdown && (
                 <div className="absolute z-10 mt-1 w-40 bg-white shadow-lg rounded-md py-1">
-                  {["all", "completed", "pending", "processing"].map((status) => (
-                    <button
-                      key={status}
-                      onClick={() => {
-                        setStatusFilter(status);
-                        setShowStatusDropdown(false);
-                      }}
-                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      {status === "all" ? "All status" : status}
-                    </button>
-                  ))}
+                  {["all", "completed", "pending", "processing"].map(
+                    (status) => (
+                      <button
+                        key={status}
+                        onClick={() => {
+                          setStatusFilter(status);
+                          setShowStatusDropdown(false);
+                        }}
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        {status === "all" ? "All status" : status}
+                      </button>
+                    )
+                  )}
                 </div>
               )}
             </div>
@@ -169,14 +169,18 @@ const OrderManagement = () => {
               />
               <div
                 className="pl-10 pr-3 py-2 text-sm border border-gray-400 rounded-lg text-green-600 cursor-pointer flex items-center"
-                onClick={() => document.getElementById("datePicker").showPicker()}
+                onClick={() =>
+                  document.getElementById("datePicker").showPicker()
+                }
               >
                 {selectedDate || "Select Date"}
               </div>
               <Calendar
                 size={18}
                 className="absolute left-3 top-2.5 text-green-600 cursor-pointer"
-                onClick={() => document.getElementById("datePicker").showPicker()}
+                onClick={() =>
+                  document.getElementById("datePicker").showPicker()
+                }
               />
             </div>
           </div>
@@ -289,10 +293,10 @@ const OrderListTable = ({
   const filteredOrders = allOrders.filter((order) => {
     // Filter by tab
     const matchesTab =
-      tabFilter === "orders" && order.type === "order" ||
-      tabFilter === "purchaseOrders" && order.type === "purchase" ||
-      tabFilter === "returnsRefunds" && order.type === "return" ||
-      tabFilter === "shipping" && order.type === "shipping";
+      (tabFilter === "orders" && order.type === "order") ||
+      (tabFilter === "purchaseOrders" && order.type === "purchase") ||
+      (tabFilter === "returnsRefunds" && order.type === "return") ||
+      (tabFilter === "shipping" && order.type === "shipping");
 
     // Filter by status
     const matchesStatus =
@@ -315,7 +319,10 @@ const OrderListTable = ({
   // Pagination logic
   const indexOfLastOrder = currentPage * ordersPerPage;
   const indexOfFirstOrder = indexOfLastOrder - ordersPerPage;
-  const currentOrders = filteredOrders.slice(indexOfFirstOrder, indexOfLastOrder);
+  const currentOrders = filteredOrders.slice(
+    indexOfFirstOrder,
+    indexOfLastOrder
+  );
   const totalPages = Math.ceil(filteredOrders.length / ordersPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
@@ -424,7 +431,8 @@ const OrderListTable = ({
                       order.status
                     )}`}
                   >
-                    {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                    {order.status.charAt(0).toUpperCase() +
+                      order.status.slice(1)}
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
@@ -433,7 +441,8 @@ const OrderListTable = ({
                       order.payment
                     )}`}
                   >
-                    {order.payment.charAt(0).toUpperCase() + order.payment.slice(1)}
+                    {order.payment.charAt(0).toUpperCase() +
+                      order.payment.slice(1)}
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -463,8 +472,8 @@ const OrderListTable = ({
       {filteredOrders.length > 0 && (
         <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200">
           <div className="text-sm text-gray-700">
-            Showing{" "}
-            <span className="font-medium">{indexOfFirstOrder + 1}</span> to{" "}
+            Showing <span className="font-medium">{indexOfFirstOrder + 1}</span>{" "}
+            to{" "}
             <span className="font-medium">
               {Math.min(indexOfLastOrder, filteredOrders.length)}
             </span>{" "}

@@ -14,12 +14,10 @@ const ProductManagement = () => {
   const [selectedDate, setSelectedDate] = useState("");
 
   return (
-    <div className="p-6">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">
-          Product Management
-        </h1>
-        <div className="flex gap-3 justify-end w-full sm:w-auto">
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-bold text-gray-800">Product Management</h2>
+        <div className="flex gap-3">
           <button className="bg-green-900 font-semi-bold text-white px-6 py-2 rounded-md">
             Export
           </button>
@@ -30,7 +28,7 @@ const ProductManagement = () => {
       </div>
 
       {/* Stats Cards - 4 columns */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
         <div className="bg-[#f4f4f0d2] p-4 rounded-md shadow-lg">
           <p className="text-lg text-[#6e6e6e] font-medium mb-6">
             Total Products
@@ -400,7 +398,7 @@ const ProductListTable = ({ searchTerm, selectedDate, statusFilter }) => {
             currentProducts.map((product, index) => (
               <tr key={`${product.id}-${index}`}>
                 <td className="px-6 py-4 whitespace-nowrap">
-                   <input
+                  <input
                     type="checkbox"
                     checked={selectedProducts.includes(product.id)}
                     onChange={() => toggleProductSelection(product.id)}

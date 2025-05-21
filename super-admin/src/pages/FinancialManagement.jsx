@@ -19,12 +19,12 @@ const FinancialManagement = () => {
   const [showStatusDropdown, setShowStatusDropdown] = useState(false);
 
   return (
-    <div className="p-6">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-bold text-gray-800">
           Financial Management
-        </h1>
-        <div className="flex gap-3 justify-end w-full sm:w-auto">
+        </h2>
+        <div className="flex gap-3">
           <button className="bg-green-900 font-semi-bold text-white px-6 py-2 rounded-md">
             Export
           </button>
@@ -127,18 +127,20 @@ const FinancialManagement = () => {
               </button>
               {showStatusDropdown && (
                 <div className="absolute z-10 mt-1 w-40 bg-white shadow-lg rounded-md py-1">
-                  {["all", "completed", "pending", "processing", "failed"].map((status) => (
-                    <button
-                      key={status}
-                      onClick={() => {
-                        setStatusFilter(status);
-                        setShowStatusDropdown(false);
-                      }}
-                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                    >
-                      {status === "all" ? "All status" : status}
-                    </button>
-                  ))}
+                  {["all", "completed", "pending", "processing", "failed"].map(
+                    (status) => (
+                      <button
+                        key={status}
+                        onClick={() => {
+                          setStatusFilter(status);
+                          setShowStatusDropdown(false);
+                        }}
+                        className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        {status === "all" ? "All status" : status}
+                      </button>
+                    )
+                  )}
                 </div>
               )}
             </div>
@@ -153,14 +155,18 @@ const FinancialManagement = () => {
               />
               <div
                 className="pl-10 pr-3 py-2 text-sm border border-gray-400 rounded-lg text-green-600 cursor-pointer flex items-center"
-                onClick={() => document.getElementById("datePicker").showPicker()}
+                onClick={() =>
+                  document.getElementById("datePicker").showPicker()
+                }
               >
                 {selectedDate || "Select Date"}
               </div>
               <Calendar
                 size={18}
                 className="absolute left-3 top-2.5 text-green-600 cursor-pointer"
-                onClick={() => document.getElementById("datePicker").showPicker()}
+                onClick={() =>
+                  document.getElementById("datePicker").showPicker()
+                }
               />
             </div>
           </div>
@@ -302,7 +308,9 @@ const TransactionListTable = ({
     indexOfFirstTransaction,
     indexOfLastTransaction
   );
-  const totalPages = Math.ceil(filteredTransactions.length / transactionsPerPage);
+  const totalPages = Math.ceil(
+    filteredTransactions.length / transactionsPerPage
+  );
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -460,11 +468,13 @@ const TransactionListTable = ({
         <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200">
           <div className="text-sm text-gray-700">
             Showing{" "}
-            <span className="font-medium">{indexOfFirstTransaction + 1}</span> to{" "}
+            <span className="font-medium">{indexOfFirstTransaction + 1}</span>{" "}
+            to{" "}
             <span className="font-medium">
               {Math.min(indexOfLastTransaction, filteredTransactions.length)}
             </span>{" "}
-            of <span className="font-medium">{filteredTransactions.length}</span>{" "}
+            of{" "}
+            <span className="font-medium">{filteredTransactions.length}</span>{" "}
             transactions
           </div>
           <div className="flex space-x-2">

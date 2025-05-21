@@ -40,16 +40,16 @@ export default function UserAnalytics() {
   const tabs = ["Overview", "Engagement", "Acquisition"];
 
   return (
-    <div className="space-y-6 p-5">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-[#004324]">User Analytics</h2>
-        <div className="flex gap-2">
-          <select className="border border-gray-300 text-sm px-3 py-2 rounded-md">
+       <div className="flex items-center justify-between">
+         <h2 className="text-xl font-bold text-gray-800">User Analytics</h2>
+        <div className="flex gap-3">
+          <select className="border border-green-900 font-semi-bold text-sm text-green-900 p-1 rounded-md">
             <option value="this month">This Month</option>
             <option value="last month">Last Month</option>
           </select>
-          <button className="bg-[#004324] text-white px-6 py-2 text-sm rounded-md">Export</button>
+           <button className="bg-green-900 font-semi-bold text-white px-6 py-2 rounded-md">Export</button>
         </div>
       </div>
 

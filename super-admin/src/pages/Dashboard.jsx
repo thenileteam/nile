@@ -1,5 +1,5 @@
-import React from "react";
-import { FaArrowUp, FaCircle } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaArrowUp } from "react-icons/fa";
 import {
   PieChart,
   Pie,
@@ -12,37 +12,41 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const pieData = [
-  { name: "Completed", value: 65, color: "#16a34a" },
-  { name: "Processing", value: 20, color: "#3b82f6" },
-  { name: "Cancelled", value: 5, color: "#ef4444" },
-];
-
-const barData = [
-  { name: "Jan", revenue: 250000 },
-  { name: "Feb", revenue: 450000 },
-  { name: "Mar", revenue: 300000 },
-  { name: "Apr", revenue: 750000 },
-  { name: "May", revenue: 1000000 },
-  { name: "Jun", revenue: 850000 },
-  { name: "Jul", revenue: 970000 },
-  { name: "Aug", revenue: 724843 },
-  { name: "Sep", revenue: 480000 },
-  { name: "Oct", revenue: 650000 },
-  { name: "Nov", revenue: 300000 },
-  { name: "Dec", revenue: 520000 },
-];
-
 function Dashboard() {
+  const [pieData, setPieData] = useState([]);
+  const [barData, setBarData] = useState([]);
+
+  useEffect(() => {
+    const pieDummy = [
+      { name: "Completed", value: 65, color: "#16a34a" },
+      { name: "Processing", value: 20, color: "#3b82f6" },
+      { name: "Cancelled", value: 5, color: "#ef4444" },
+    ];
+
+    const barDummy = [
+      { name: "Jan", revenue: 250000 },
+      { name: "Feb", revenue: 450000 },
+      { name: "Mar", revenue: 300000 },
+      { name: "Apr", revenue: 750000 },
+      { name: "May", revenue: 1000000 },
+      { name: "Jun", revenue: 850000 },
+      { name: "Jul", revenue: 970000 },
+      { name: "Aug", revenue: 724843 },
+      { name: "Sep", revenue: 480000 },
+      { name: "Oct", revenue: 650000 },
+      { name: "Nov", revenue: 300000 },
+      { name: "Dec", revenue: 520000 },
+    ];
+
+    setPieData(pieDummy);
+    setBarData(barDummy);
+  }, []);
+
   return (
     <div className="flex flex-col h-full space-y-6">
       {/* Header */}
       <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-xl font-bold text-gray-800">
-            Welcome Super Admin
-          </h2>
-        </div>
+        <h2 className="text-xl font-bold text-gray-800">Welcome Super Admin</h2>
         <div className="flex gap-3">
           <button className="bg-green-900 font-semi-bold text-white px-6 py-2 rounded-md">
             Export
@@ -55,23 +59,11 @@ function Dashboard() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-        {[
-          "Total Active Businesses",
-          "Total Individual Users",
-          "Total Orders",
-          "Monthly Revenue",
-        ].map((label, idx) => (
-          <div
-            key={idx}
-            className="bg-[#f4f4f0] py-4 px-2 rounded-md shadow-sm w-fit md:w-60"
-          >
+        {["Total Active Businesses", "Total Individual Users", "Total Orders", "Monthly Revenue"].map((label, idx) => (
+          <div key={idx} className="bg-[#f4f4f0] py-4 px-2 rounded-md shadow-sm w-fit md:w-60">
             <p className="text-lg text-[#6e6e6e] font-medium mb-5">{label}</p>
             <h3 className="text-xl font-bold text-[#0a9b21] mb-5">
-              {label === "Monthly Revenue"
-                ? "₦45.2M"
-                : idx === 1
-                ? "125,430"
-                : "50,000"}
+              {label === "Monthly Revenue" ? "₦45.2M" : idx === 1 ? "125,430" : "50,000"}
             </h3>
             <div className="flex items-center text-sm text-[#0a9b21] mt-1">
               <FaArrowUp className="mr-1" />
@@ -109,12 +101,7 @@ function Dashboard() {
                       : `₦${value}`
                   }
                 />
-                <Bar
-                  dataKey="revenue"
-                  fill="#0a9b21"
-                  radius={[4, 4, 0, 0]}
-                  barSize={11}
-                />
+                <Bar dataKey="revenue" fill="#0a9b21" radius={[4, 4, 0, 0]} barSize={11} />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -124,55 +111,25 @@ function Dashboard() {
           <h4 className="font-semibold mb-4">System health</h4>
           <div className="space-y-2 text-sm">
             {[
-              {
-                name: "API Services",
-                uptime: "100%",
-                status: "Operational",
-                color: "text-green-600",
-              },
-              {
-                name: "Database",
-                uptime: "99.9%",
-                status: "Operational",
-                color: "text-green-600",
-              },
-              {
-                name: "Payment Gateway",
-                uptime: "92.5%",
-                status: "Operational",
-                color: "text-yellow-500",
-              },
-              {
-                name: "Database",
-                uptime: "87.5%",
-                status: "Operational",
-                color: "text-red-600",
-              },
+              { name: "API Services", uptime: "100%", status: "Operational", color: "text-green-600" },
+              { name: "Database", uptime: "99.9%", status: "Operational", color: "text-green-600" },
+              { name: "Payment Gateway", uptime: "92.5%", status: "Operational", color: "text-yellow-500" },
+              { name: "Database", uptime: "87.5%", status: "Operational", color: "text-red-600" },
             ].map((item, idx) => (
               <div key={idx} className="flex items-center justify-between">
                 <div>
-                  <div className="font-bold text-[#004324] text-[17px] leading-7">
-                    {item.name}
-                  </div>
+                  <div className="font-bold text-[#004324] text-[17px] leading-7">{item.name}</div>
                   <span className="text-gray-500">{item.uptime} Uptime</span>
                 </div>
-
-                <div className="flex items-center gap-2">
-                  <span
-                    className={`text-xs px-2 py-0.5 rounded-full border ${item.color} border-current`}
-                  >
-                    {item.status}
-                  </span>
-                </div>
+                <span className={`text-xs px-2 py-0.5 rounded-full border ${item.color} border-current`}>
+                  {item.status}
+                </span>
               </div>
             ))}
             <div className="mt-4">
               <p className="text-sm font-medium mb-1">Overall System Health</p>
               <div className="w-full bg-gray-300 h-2 rounded-full">
-                <div
-                  className="bg-green-600 h-2 rounded-full"
-                  style={{ width: "91%" }}
-                ></div>
+                <div className="bg-green-600 h-2 rounded-full" style={{ width: "91%" }}></div>
               </div>
             </div>
           </div>
@@ -195,10 +152,7 @@ function Dashboard() {
                 <span>{cat.width}</span>
               </div>
               <div className="w-full bg-green-100 h-3 rounded">
-                <div
-                  className="bg-green-700 h-3 rounded"
-                  style={{ width: cat.width }}
-                ></div>
+                <div className="bg-green-700 h-3 rounded" style={{ width: cat.width }}></div>
               </div>
             </div>
           ))}
@@ -210,13 +164,8 @@ function Dashboard() {
             <div className="text-sm space-y-2">
               {pieData.map((item, idx) => (
                 <div key={idx} className="flex items-center gap-2 leading-7">
-                  <span
-                    className="w-3 h-3 rounded-full"
-                    style={{ backgroundColor: item.color }}
-                  ></span>
-                  <span className="font-medium text-[#004324]">
-                    {item.name}
-                  </span>
+                  <span className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }}></span>
+                  <span className="font-medium text-[#004324]">{item.name}</span>
                   <span className="text-gray-500">{item.value}%</span>
                 </div>
               ))}

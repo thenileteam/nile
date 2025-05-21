@@ -16,12 +16,10 @@ const BusinessManagement = () => {
   const [selectedBusinesses, setSelectedBusinesses] = useState([]);
 
   return (
-    <div className="p-6">
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">
-          Business Accounts
-        </h1>
-        <div className="flex gap-3 justify-end w-full sm:w-auto">
+    <div className="space-y-6">
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl font-bold text-gray-800">Business Accounts</h2>
+        <div className="flex gap-3">
           <button className="bg-green-900 font-semi-bold text-white px-6 py-2 rounded-md">
             Export
           </button>

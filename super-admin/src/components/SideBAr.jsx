@@ -10,7 +10,7 @@ import {
   Landmark,
   NotepadText,
   Headset,
-  MonitorCog
+  MonitorCog,
 } from "lucide-react";
 import Logo from "../assets/logo.png";
 
@@ -27,14 +27,14 @@ const menuItems = [
   { name: "System & Settings", icon: MonitorCog, path: "/settings" },
 ];
 
-function Sidebar() {
+function Sidebar({ onLinkClick = () => {} }) {
   return (
     <aside className="w-64 bg-white shadow-md h-full flex flex-col">
       <div className="px-10 py-3 flex justify-center items-center">
         <img src={Logo} alt="Nile Logo" className="w-25 object-contain" />
       </div>
 
-      <nav className="flex-1 px-4 py-1">
+      <nav className="flex-1 p-1">
         {menuItems.map((item, idx) => {
           const Icon = item.icon;
           return (
@@ -42,6 +42,7 @@ function Sidebar() {
               key={idx}
               to={item.path}
               end={item.path === "/"}
+              onClick={onLinkClick}
               className={({ isActive }) =>
                 `flex items-center gap-2 py-3 px-4 rounded-2xl cursor-pointer transition-all duration-200 ${
                   isActive
@@ -65,11 +66,12 @@ function Sidebar() {
         })}
       </nav>
 
-      <div className="p-4 border-t text-sm text-gray-500">
+      <div className="px-6 py-4 border-t text-sm text-gray-500">
         <div className="font-semibold">Super Admin</div>
         <div>Founder Access</div>
       </div>
     </aside>
   );
 }
+
 export default Sidebar;
