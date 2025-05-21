@@ -19,58 +19,47 @@ const FinancialManagement = () => {
   const [showStatusDropdown, setShowStatusDropdown] = useState(false);
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-gray-800">
-          Financial Management
-        </h2>
+    <div className="space-y-6 px-4 sm:px-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+        <h2 className="text-xl font-bold text-gray-800 mb-4 sm:mb-0">Financial Management</h2>
         <div className="flex gap-3">
-          <button className="bg-green-900 font-semi-bold text-white px-6 py-2 rounded-md">
+          <button className="bg-green-900 font-semibold text-white px-4 py-2 rounded-md text-sm">
             Export
           </button>
-          <button className="border border-green-900 font-semi-bold text-green-900 px-5 py-2 rounded-md">
+          <button className="border border-green-900 font-semibold text-green-900 px-4 py-2 rounded-md text-sm">
             Add Transaction
           </button>
         </div>
       </div>
 
-      {/* Stats Cards - 4 columns */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-6">
         <div className="bg-[#f4f4f0d2] p-4 rounded-md shadow-lg">
-          <p className="text-lg text-[#6e6e6e] font-medium mb-6">
-            Monthly Revenue
-          </p>
-          <h3 className="text-2xl font-bold text-[#0a9b21] mb-6">₦45.2M</h3>
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">Monthly Revenue</p>
+          <h3 className="text-lg sm:text-2xl font-bold text-[#0a9b21] mb-4">₦45.2M</h3>
           <div className="flex items-center text-sm text-[#0a9b21]">
             <FaArrowUp className="mr-1" />
             <span>↑ 10% from last month</span>
           </div>
         </div>
         <div className="bg-[#f4f4f0d2] p-4 rounded-md shadow-lg">
-          <p className="text-lg text-[#6e6e6e] font-medium mb-6">
-            Commission Earned
-          </p>
-          <h3 className="text-2xl font-bold text-[#0a9b21] mb-6">₦6.8M</h3>
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">Commission Earned</p>
+          <h3 className="text-lg sm:text-2xl font-bold text-[#0a9b21] mb-4">₦6.8M</h3>
           <div className="flex items-center text-sm text-[#0a9b21]">
             <FaArrowUp className="mr-1" />
             <span>↑ 12.7% vs last month</span>
           </div>
         </div>
         <div className="bg-[#f4f4f0d2] p-4 rounded-md shadow-lg">
-          <p className="text-lg text-[#6e6e6e] font-medium mb-6">
-            Active Merchants
-          </p>
-          <h3 className="text-2xl font-bold text-[#0a9b21] mb-6">1,245</h3>
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">Active Merchants</p>
+          <h3 className="text-lg sm:text-2xl font-bold text-[#0a9b21] mb-4">1,245</h3>
           <div className="flex items-center text-sm text-[#0a9b21]">
             <FaArrowUp className="mr-1" />
             <span>↑ 8.3% from last month</span>
           </div>
         </div>
         <div className="bg-[#f4f4f0d2] p-4 rounded-md shadow-lg">
-          <p className="text-lg text-[#6e6e6e] font-medium mb-6">
-            Avg Order Value
-          </p>
-          <h3 className="text-2xl font-bold text-[#0a9b21] mb-6">₦24,500</h3>
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">Avg Order Value</p>
+          <h3 className="text-lg sm:text-2xl font-bold text-[#0a9b21] mb-4">₦24,500</h3>
           <div className="flex items-center text-sm text-[#0a9b21]">
             <FaArrowUp className="mr-1" />
             <span>↑ 5.2% from last month</span>
@@ -79,32 +68,22 @@ const FinancialManagement = () => {
       </div>
 
       <div className="flex flex-col w-full">
-        {/* Tab Navigation */}
-        <div className="flex">
-          <button
-            onClick={() => setActiveTab("transactions")}
-            className={`px-4 py-3 text-sm font-medium relative ${
-              activeTab === "transactions"
+        <div className="flex flex-wrap gap-2 sm:gap-4">
+          {["transactions", "payouts"].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-3 py-2 text-sm font-medium relative ${activeTab === tab
                 ? "text-green-600 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-green-600"
                 : "text-gray-500 hover:text-gray-700"
-            }`}
-          >
-            Transactions
-          </button>
-          <button
-            onClick={() => setActiveTab("payouts")}
-            className={`px-4 py-3 text-sm font-medium relative ${
-              activeTab === "payouts"
-                ? "text-green-600 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-green-600"
-                : "text-gray-500 hover:text-gray-700"
-            }`}
-          >
-            Payouts & Invoices
-          </button>
+              }`}
+            >
+              {tab === "payouts" ? "Payouts & Invoices" : "Transactions"}
+            </button>
+          ))}
         </div>
 
-        {/* Search, Date Picker, and Status Dropdown */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full py-6 gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full py-4 gap-4">
           <div className="relative w-full sm:w-64">
             <input
               type="text"
@@ -113,20 +92,20 @@ const FinancialManagement = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-3 py-2 text-sm border border-gray-400 rounded-full outline-none"
             />
-            <FaSearch className="absolute left-3 top-3 text-gray-500" />
+            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
           </div>
 
-          <div className="flex gap-4">
-            <div className="relative">
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            <div className="relative w-full sm:w-40">
               <button
                 onClick={() => setShowStatusDropdown(!showStatusDropdown)}
-                className="flex items-center justify-between pl-3 pr-10 py-2 text-sm border border-gray-400 rounded-lg text-gray-700 w-40"
+                className="flex items-center justify-between pl-3 pr-10 py-2 text-sm border border-gray-400 rounded-lg text-gray-700 w-full"
               >
                 {statusFilter === "all" ? "All status" : statusFilter}
-                <FaChevronDown className="absolute right-3 top-3 text-gray-500" />
+                <FaChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
               </button>
               {showStatusDropdown && (
-                <div className="absolute z-10 mt-1 w-40 bg-white shadow-lg rounded-md py-1">
+                <div className="absolute z-10 mt-1 w-full sm:w-40 bg-white shadow-lg rounded-md py-1">
                   {["all", "completed", "pending", "processing", "failed"].map(
                     (status) => (
                       <button
@@ -155,26 +134,21 @@ const FinancialManagement = () => {
               />
               <div
                 className="pl-10 pr-3 py-2 text-sm border border-gray-400 rounded-lg text-green-600 cursor-pointer flex items-center"
-                onClick={() =>
-                  document.getElementById("datePicker").showPicker()
-                }
+                onClick={() => document.getElementById("datePicker").showPicker()}
               >
                 {selectedDate || "Select Date"}
               </div>
               <Calendar
                 size={18}
-                className="absolute left-3 top-2.5 text-green-600 cursor-pointer"
-                onClick={() =>
-                  document.getElementById("datePicker").showPicker()
-                }
+                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-green-600 cursor-pointer"
+                onClick={() => document.getElementById("datePicker").showPicker()}
               />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Transaction Table */}
-      <div className="overflow-x-auto bg-white rounded-lg shadow">
+      <div className="overflow-x-auto">
         <TransactionListTable
           searchTerm={searchTerm}
           selectedDate={selectedDate}
@@ -199,7 +173,6 @@ const TransactionListTable = ({
   const [currentPage, setCurrentPage] = useState(1);
   const transactionsPerPage = 5;
 
-  // Sample transaction data
   const allTransactions = [
     {
       id: "T1TX-C01",
@@ -275,42 +248,30 @@ const TransactionListTable = ({
     },
   ];
 
-  // Filter transactions
   const filteredTransactions = allTransactions.filter((transaction) => {
-    // Filter by tab
     const matchesTab =
       tabFilter === "transactions" ||
       (tabFilter === "payouts" && transaction.type === "Payout");
-
-    // Filter by status
     const matchesStatus =
       statusFilter === "all" || transaction.status === statusFilter;
-
-    // Filter by search term
     const matchesSearch =
       transaction.merchant.toLowerCase().includes(searchTerm.toLowerCase()) ||
       transaction.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
       transaction.type.toLowerCase().includes(searchTerm.toLowerCase());
-
-    // Filter by date if selected
     const matchesDate = selectedDate
       ? new Date(transaction.date).toLocaleDateString() ===
         new Date(selectedDate).toLocaleDateString()
       : true;
-
     return matchesTab && matchesStatus && matchesSearch && matchesDate;
   });
 
-  // Pagination logic
   const indexOfLastTransaction = currentPage * transactionsPerPage;
   const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage;
   const currentTransactions = filteredTransactions.slice(
     indexOfFirstTransaction,
     indexOfLastTransaction
   );
-  const totalPages = Math.ceil(
-    filteredTransactions.length / transactionsPerPage
-  );
+  const totalPages = Math.ceil(filteredTransactions.length / transactionsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -346,17 +307,15 @@ const TransactionListTable = ({
     default: "bg-gray-100 text-gray-800",
   };
 
-  const getStatusColor = (status) =>
-    statusColors[status] || statusColors["default"];
-  const getPaymentColor = (payment) =>
-    paymentColors[payment.toLowerCase()] || paymentColors["default"];
+  const getStatusColor = (status) => statusColors[status] || statusColors["default"];
+  const getPaymentColor = (payment) => paymentColors[payment.toLowerCase()] || paymentColors["default"];
 
   return (
     <>
-      <table className="min-w-full divide-y divide-gray-200">
+      <table className="min-w-full divide-y divide-gray-200 text-sm">
         <thead className="bg-gray-50">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               <input
                 type="checkbox"
                 onChange={handleSelectAll}
@@ -367,28 +326,28 @@ const TransactionListTable = ({
                 className="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
               />
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Transac_ID
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Type
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Merchant
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Amount
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Date
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Status
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Payment
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Actions
             </th>
           </tr>
@@ -397,7 +356,7 @@ const TransactionListTable = ({
           {currentTransactions.length > 0 ? (
             currentTransactions.map((transaction, index) => (
               <tr key={`${transaction.id}-${index}`}>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap">
                   <input
                     type="checkbox"
                     checked={selectedTransactions.includes(transaction.id)}
@@ -405,24 +364,24 @@ const TransactionListTable = ({
                     className="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
                   />
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-sm text-gray-500">
                   {transaction.id}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
                   {transaction.type}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-sm text-gray-500">
                   {transaction.merchant}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-sm text-gray-500">
                   {transaction.amount}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-sm text-gray-500">
                   {new Date(transaction.date).toLocaleDateString()}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap">
                   <span
-                    className={`px-3 py-1 inline-flex text-xs font-semibold rounded-full ${getStatusColor(
+                    className={`px-2 py-1 inline-flex text-xs font-semibold rounded-full ${getStatusColor(
                       transaction.status
                     )}`}
                   >
@@ -430,9 +389,9 @@ const TransactionListTable = ({
                       transaction.status.slice(1)}
                   </span>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap">
                   <span
-                    className={`px-3 py-1 inline-flex text-xs font-semibold rounded-full ${getPaymentColor(
+                    className={`px-2 py-1 inline-flex text-xs font-semibold rounded-full ${getPaymentColor(
                       transaction.payment
                     )}`}
                   >
@@ -440,8 +399,8 @@ const TransactionListTable = ({
                       transaction.payment.slice(1)}
                   </span>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  <button className="text-blue-600 hover:text-blue-900 mr-3">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-sm font-medium">
+                  <button className="text-blue-600 hover:text-blue-900 mr-2">
                     <FaEdit className="inline mr-1" /> Edit
                   </button>
                   <button className="text-red-600 hover:text-red-900">
@@ -454,7 +413,7 @@ const TransactionListTable = ({
             <tr>
               <td
                 colSpan="9"
-                className="px-6 py-4 text-center text-sm text-gray-500"
+                className="px-2 sm:px-4 py-4 text-center text-sm text-gray-500"
               >
                 No transactions found matching your criteria
               </td>
@@ -463,25 +422,21 @@ const TransactionListTable = ({
         </tbody>
       </table>
 
-      {/* Pagination */}
       {filteredTransactions.length > 0 && (
-        <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200">
-          <div className="text-sm text-gray-700">
-            Showing{" "}
-            <span className="font-medium">{indexOfFirstTransaction + 1}</span>{" "}
-            to{" "}
-            <span className="font-medium">
+        <div className="flex flex-col sm:flex-row items-center justify-between px-2 sm:px-4 py-4 border-t border-gray-200">
+          <div className="text-sm text-gray-700 mb-2 sm:mb-0">
+            Showing <span className="font-medium">{indexOfFirstTransaction + 1}</span>{" "}
+            to <span className="font-medium">
               {Math.min(indexOfLastTransaction, filteredTransactions.length)}
             </span>{" "}
-            of{" "}
-            <span className="font-medium">{filteredTransactions.length}</span>{" "}
+            of <span className="font-medium">{filteredTransactions.length}</span>{" "}
             transactions
           </div>
           <div className="flex space-x-2">
             <button
               onClick={() => paginate(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className={`px-3 py-1 border rounded-md flex items-center ${
+              className={`px-3 py-1 border rounded-md flex items-center text-sm ${
                 currentPage === 1
                   ? "text-gray-400 cursor-not-allowed"
                   : "text-gray-700 hover:bg-gray-50"
@@ -489,13 +444,12 @@ const TransactionListTable = ({
             >
               <FaChevronLeft className="mr-1" />
             </button>
-
             {Array.from({ length: totalPages }, (_, i) => i + 1).map(
               (number) => (
                 <button
                   key={number}
                   onClick={() => paginate(number)}
-                  className={`px-3 py-1 border rounded-md ${
+                  className={`px-3 py-1 border rounded-md text-sm ${
                     currentPage === number
                       ? "bg-green-600 text-white"
                       : "text-gray-700 hover:bg-gray-50"
@@ -505,11 +459,10 @@ const TransactionListTable = ({
                 </button>
               )
             )}
-
             <button
               onClick={() => paginate(Math.min(totalPages, currentPage + 1))}
               disabled={currentPage === totalPages}
-              className={`px-3 py-1 border rounded-md flex items-center ${
+              className={`px-3 py-1 border rounded-md flex items-center text-sm ${
                 currentPage === totalPages
                   ? "text-gray-400 cursor-not-allowed"
                   : "text-gray-700 hover:bg-gray-50"

@@ -40,40 +40,42 @@ export default function UserAnalytics() {
   const tabs = ["Overview", "Engagement", "Acquisition"];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 px-4 sm:px-6">
       {/* Header */}
-       <div className="flex items-center justify-between">
-         <h2 className="text-xl font-bold text-gray-800">User Analytics</h2>
-        <div className="flex gap-3">
-          <select className="border border-green-900 font-semi-bold text-sm text-green-900 p-1 rounded-md">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <h2 className="text-xl font-bold text-gray-800 mb-4 sm:mb-0">User Analytics</h2>
+        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+          <select className="border border-green-900 font-semibold text-sm text-green-900 px-3 py-2 rounded-md w-full sm:w-auto">
             <option value="this month">This Month</option>
             <option value="last month">Last Month</option>
           </select>
-           <button className="bg-green-900 font-semi-bold text-white px-6 py-2 rounded-md">Export</button>
+          <button className="bg-green-900 font-semibold text-white px-6 py-2 rounded-md text-sm w-full sm:w-auto">
+            Export
+          </button>
         </div>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-30">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {[
-          { label: "Total Users", value: "3,542", diff: "+394", vs:"vs last Month" },
-          { label: "New Signups", value: "245", diff: "+38", vs:"vs last Month" },
-          { label: "Active Users", value: "2,845", diff: "+215", vs:"vs last Month" },
+          { label: "Total Users", value: "3,542", diff: "+394", vs: "vs last Month" },
+          { label: "New Signups", value: "245", diff: "+38", vs: "vs last Month" },
+          { label: "Active Users", value: "2,845", diff: "+215", vs: "vs last Month" },
         ].map((item, idx) => (
-          <div key={idx} className="bg-green-50 p-4 rounded-lg shadow-lg w-65">
-            <p className="text-gray-600 text-sm mb-5">{item.label}</p>
-            <h3 className="text-2xl font-bold text-green-700 mb-5">{item.value}</h3>
-            <div className="flex items-center text-sm text-green-600 mt-1">
+          <div key={idx} className="bg-green-50 p-4 rounded-lg shadow-lg">
+            <p className="text-gray-600 text-sm sm:text-base mb-4">{item.label}</p>
+            <h3 className="text-xl sm:text-2xl font-bold text-green-700 mb-4">{item.value}</h3>
+            <div className="flex items-center text-xs sm:text-sm text-green-600">
               <FaArrowUp className="mr-1" />
               <span>{item.diff}</span>
-               <span className="text-[#00000085] ml-1">{item.vs}</span>
+              <span className="text-[#00000085] ml-1">{item.vs}</span>
             </div>
           </div>
         ))}
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-6 text-sm font-medium text-[#004324]">
+      <div className="flex flex-wrap gap-4 sm:gap-6 text-sm font-medium text-[#004324]">
         {tabs.map((tab) => (
           <button
             key={tab}
@@ -88,22 +90,22 @@ export default function UserAnalytics() {
       </div>
 
       {/* Distribution & Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         {/* User Distribution */}
         <div className="bg-green-50 p-4 rounded-lg shadow">
-          <h4 className="font-semibold text-[#004324] mb-4">User Distribution</h4>
+          <h4 className="font-semibold text-[#004324] mb-4 text-sm sm:text-base">User Distribution</h4>
           {userRoles.map((role, idx) => (
             <div key={idx} className="mb-4">
-              <div className="flex justify-between text-sm mb-1">
+              <div className="flex justify-between text-xs sm:text-sm mb-1">
                 <span>{role.name}</span>
                 <span className="text-gray-500">{role.count}</span>
               </div>
-              <div className="relative w-full bg-gray-200 h-3 rounded-full">
+              <div className="relative w-full bg-gray-200 h-2 sm:h-3 rounded-full">
                 <div
-                  className={`${role.color} h-3 rounded-full relative`}
+                  className={`${role.color} h-2 sm:h-3 rounded-full relative`}
                   style={{ width: `${role.percent}%` }}
                 >
-                  <span className="absolute -top-1 -right-5 text-xs font-bold text-[#004324]">
+                  <span className="absolute -top-4 sm:-top-5 -right-5 text-xs font-bold text-[#004324]">
                     {role.percent}%
                   </span>
                 </div>
@@ -114,12 +116,12 @@ export default function UserAnalytics() {
 
         {/* User Metrics */}
         <div className="bg-green-50 p-4 rounded-lg shadow">
-          <h4 className="font-semibold text-[#004324] mb-4">User Metrics</h4>
-          <div className="grid grid-cols-2 gap-4 text-sm">
+          <h4 className="font-semibold text-[#004324] mb-4 text-sm sm:text-base">User Metrics</h4>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
             {userMetrics.map((metric, idx) => (
               <div key={idx} className="border border-[#00000044] p-3 rounded-md">
                 <p className="font-medium text-[#004324] mb-1">{metric.title}</p>
-                <h3 className="text-2xl font-semibold text-gray-700">{metric.value}</h3>
+                <h3 className="text-xl sm:text-2xl font-semibold text-gray-700">{metric.value}</h3>
                 <div className={`flex items-center mt-1 ${metric.up ? 'text-green-600' : 'text-red-500'}`}>
                   {metric.up ? <FaArrowUp className="mr-1" /> : <FaArrowDown className="mr-1" />}
                   <span>{metric.change}</span>

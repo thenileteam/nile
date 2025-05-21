@@ -22,7 +22,6 @@ function Dashboard() {
       { name: "Processing", value: 20, color: "#3b82f6" },
       { name: "Cancelled", value: 5, color: "#ef4444" },
     ];
-
     const barDummy = [
       { name: "Jan", revenue: 250000 },
       { name: "Feb", revenue: 450000 },
@@ -37,35 +36,32 @@ function Dashboard() {
       { name: "Nov", revenue: 300000 },
       { name: "Dec", revenue: 520000 },
     ];
-
     setPieData(pieDummy);
     setBarData(barDummy);
   }, []);
 
   return (
-    <div className="flex flex-col h-full space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-gray-800">Welcome Super Admin</h2>
+    <div className="flex flex-col h-full space-y-6 px-4 sm:px-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+        <h2 className="text-xl font-bold text-gray-800 mb-4 sm:mb-0">Welcome Super Admin</h2>
         <div className="flex gap-3">
-          <button className="bg-green-900 font-semi-bold text-white px-6 py-2 rounded-md">
+          <button className="bg-green-900 font-semibold text-white px-4 py-2 rounded-md text-sm">
             Export
           </button>
-          <button className="border border-green-900 font-semi-bold text-green-900 px-5 py-2 rounded-md">
+          <button className="border border-green-900 font-semibold text-green-900 px-4 py-2 rounded-md text-sm">
             Refresh
           </button>
         </div>
       </div>
 
-      {/* Stats Cards */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
         {["Total Active Businesses", "Total Individual Users", "Total Orders", "Monthly Revenue"].map((label, idx) => (
-          <div key={idx} className="bg-[#f4f4f0] py-4 px-2 rounded-md shadow-sm w-fit md:w-60">
-            <p className="text-lg text-[#6e6e6e] font-medium mb-5">{label}</p>
-            <h3 className="text-xl font-bold text-[#0a9b21] mb-5">
+          <div key={idx} className="bg-[#f4f4f0] p-4 rounded-md shadow-sm">
+            <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">{label}</p>
+            <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-4">
               {label === "Monthly Revenue" ? "₦45.2M" : idx === 1 ? "125,430" : "50,000"}
             </h3>
-            <div className="flex items-center text-sm text-[#0a9b21] mt-1">
+            <div className="flex items-center text-sm text-[#0a9b21]">
               <FaArrowUp className="mr-1" />
               <span>1.5%</span>
               <span className="text-[#6e6e6e] ml-2">vs last Month</span>
@@ -74,10 +70,9 @@ function Dashboard() {
         ))}
       </div>
 
-      {/* Chart + System Health */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div className="bg-[#f4f4f0] p-4 rounded-md shadow-sm">
-          <h4 className="font-semibold mb-2">Running Year</h4>
+          <h4 className="font-semibold mb-2 text-sm sm:text-base">Running Year</h4>
           <div className="h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={barData}>
@@ -108,7 +103,7 @@ function Dashboard() {
         </div>
 
         <div className="bg-[#f4f4f0] p-4 rounded-md shadow-sm">
-          <h4 className="font-semibold mb-4">System health</h4>
+          <h4 className="font-semibold mb-4 text-sm sm:text-base">System Health</h4>
           <div className="space-y-2 text-sm">
             {[
               { name: "API Services", uptime: "100%", status: "Operational", color: "text-green-600" },
@@ -118,7 +113,7 @@ function Dashboard() {
             ].map((item, idx) => (
               <div key={idx} className="flex items-center justify-between">
                 <div>
-                  <div className="font-bold text-[#004324] text-[17px] leading-7">{item.name}</div>
+                  <div className="font-bold text-[#004324] text-sm sm:text-base">{item.name}</div>
                   <span className="text-gray-500">{item.uptime} Uptime</span>
                 </div>
                 <span className={`text-xs px-2 py-0.5 rounded-full border ${item.color} border-current`}>
@@ -136,10 +131,9 @@ function Dashboard() {
         </div>
       </div>
 
-      {/* Bottom Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         <div className="bg-[#f4f4f0] p-4 rounded-md shadow-sm">
-          <h4 className="font-semibold mb-4">Top selling product categories</h4>
+          <h4 className="font-semibold mb-4 text-sm sm:text-base">Top Selling Product Categories</h4>
           {[
             { name: "Electronics", width: "80%" },
             { name: "Clothing", width: "100%" },
@@ -159,18 +153,18 @@ function Dashboard() {
         </div>
 
         <div className="bg-[#f4f4f0] p-4 rounded-md shadow-sm">
-          <h4 className="font-semibold mb-4">Order Status</h4>
-          <div className="flex items-center justify-between">
-            <div className="text-sm space-y-2">
+          <h4 className="font-semibold mb-4 text-sm sm:text-base">Order Status</h4>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+            <div className="text-sm space-y-2 mb-4 sm:mb-0">
               {pieData.map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2 leading-7">
+                <div key={idx} className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }}></span>
                   <span className="font-medium text-[#004324]">{item.name}</span>
                   <span className="text-gray-500">{item.value}%</span>
                 </div>
               ))}
             </div>
-            <div className="h-40 w-40">
+            <div className="h-40 w-40 mx-auto sm:mx-0">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
                   <Pie

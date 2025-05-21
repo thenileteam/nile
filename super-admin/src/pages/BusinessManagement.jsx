@@ -16,48 +16,42 @@ const BusinessManagement = () => {
   const [selectedBusinesses, setSelectedBusinesses] = useState([]);
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-gray-800">Business Accounts</h2>
+    <div className="space-y-6 px-4 sm:px-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+        <h2 className="text-xl font-bold text-gray-800 mb-4 sm:mb-0">Business Accounts</h2>
         <div className="flex gap-3">
-          <button className="bg-green-900 font-semi-bold text-white px-6 py-2 rounded-md">
+          <button className="bg-green-900 font-semibold text-white px-4 py-2 rounded-md text-sm">
             Export
           </button>
-          <button className="border border-green-900 font-semi-bold text-green-900 px-5 py-2 rounded-md">
+          <button className="border border-green-900 font-semibold text-green-900 px-4 py-2 rounded-md text-sm">
             Add Business
           </button>
         </div>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-20 mb-6">
-        <div className="bg-[#f4f4f0] px-4 py-1 rounded-md shadow-lg w-70 h-40">
-          <p className="text-lg text-[#6e6e6e] font-medium mb-6">
-            Total Businesses
-          </p>
-          <h3 className="text-xl font-bold text-[#0a9b21] mb-6">66,500</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+        <div className="bg-[#f4f4f0] p-4 rounded-md shadow-lg">
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">Total Businesses</p>
+          <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-4">66,500</h3>
           <div className="flex items-center text-sm text-[#0a9b21]">
             <FaArrowUp className="mr-1" />
             <span className="mr-1">+1,250</span>
             <span className="text-[#6e6e6e]">vs last Month</span>
           </div>
         </div>
-        <div className="bg-[#f4f4f0] px-4 py-1  rounded-md shadow-lg w-70 h-40">
-          <p className="text-lg text-[#6e6e6e] font-medium mb-6">
-            Active Businesses
-          </p>
-          <h3 className="text-xl font-bold text-[#0a9b21] mb-6">60,000</h3>
+        <div className="bg-[#f4f4f0] p-4 rounded-md shadow-lg">
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">Active Businesses</p>
+          <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-4">60,000</h3>
           <div className="flex items-center text-sm text-[#0a9b21]">
             <FaArrowUp className="mr-1" />
             <span className="mr-1">15%</span>
             <span className="text-[#6e6e6e]">vs last Month</span>
           </div>
         </div>
-        <div className="bg-[#f4f4f0] px-4 py-1 rounded-md shadow-lg w-70 h-40">
-          <p className="text-lg text-[#6e6e6e] font-medium mb-6">
-            Premium Plan Adoption
-          </p>
-          <h3 className="text-xl font-bold text-[#0a9b21] mb-6">35%</h3>
+        <div className="bg-[#f4f4f0] p-4 rounded-md shadow-lg">
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">Premium Plan Adoption</p>
+          <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-4">35%</h3>
           <div className="flex items-center text-sm text-[#0a9b21]">
             <FaArrowUp className="mr-1" />
             <span className="mr-1">1.5%</span>
@@ -68,51 +62,23 @@ const BusinessManagement = () => {
 
       <div className="flex flex-col w-full">
         {/* Tab Navigation */}
-        <div className="flex">
-          <button
-            onClick={() => setActiveTab("all")}
-            className={`px-4 py-3 text-sm font-medium relative ${
-              activeTab === "all"
+        <div className="flex flex-wrap gap-2 sm:gap-4">
+          {["all", "active", "inactive", "suspended"].map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`px-3 py-2 text-sm font-medium relative ${activeTab === tab
                 ? "text-green-600 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-green-600"
                 : "text-gray-500 hover:text-gray-700"
-            }`}
-          >
-            All Businesses
-          </button>
-          <button
-            onClick={() => setActiveTab("active")}
-            className={`px-4 py-3 text-sm font-medium relative ${
-              activeTab === "active"
-                ? "text-green-600 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-green-600"
-                : "text-gray-500 hover:text-gray-700"
-            }`}
-          >
-            Active
-          </button>
-          <button
-            onClick={() => setActiveTab("inactive")}
-            className={`px-4 py-3 text-sm font-medium relative ${
-              activeTab === "inactive"
-                ? "text-green-600 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-green-600"
-                : "text-gray-500 hover:text-gray-700"
-            }`}
-          >
-            Inactive
-          </button>
-          <button
-            onClick={() => setActiveTab("suspended")}
-            className={`px-4 py-3 text-sm font-medium relative ${
-              activeTab === "suspended"
-                ? "text-green-600 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-green-600"
-                : "text-gray-500 hover:text-gray-700"
-            }`}
-          >
-            Suspended
-          </button>
+              }`}
+            >
+              {tab.charAt(0).toUpperCase() + tab.slice(1)} Businesses
+            </button>
+          ))}
         </div>
 
         {/* Search & Filter */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full py-6 gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full py-4 gap-4">
           <div className="relative w-full sm:w-64">
             <input
               type="text"
@@ -121,7 +87,7 @@ const BusinessManagement = () => {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-3 py-2 text-sm border border-gray-400 rounded-full outline-none"
             />
-            <FaSearch className="absolute left-3 top-3 text-gray-500" />
+            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
           </div>
 
           <div className="relative w-full sm:w-40">
@@ -140,15 +106,14 @@ const BusinessManagement = () => {
             </div>
             <Calendar
               size={18}
-              className="absolute left-3 top-2.5 text-green-600 cursor-pointer"
+              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-green-600 cursor-pointer"
               onClick={() => document.getElementById("datePicker").showPicker()}
             />
           </div>
         </div>
       </div>
 
-      {/* Content Area */}
-      <div className="mt-6">
+      <div className="mt-4">
         <BusinessListTable
           searchTerm={searchTerm}
           selectedDate={selectedDate}
@@ -256,29 +221,21 @@ const BusinessListTable = ({
     },
   ];
 
-  // Filter businesses based on active tab and search term
   const filteredBusinesses = allBusinesses.filter((business) => {
-    // Filter by status
     const matchesStatus =
       statusFilter === "all" ||
       business.status.toLowerCase() === statusFilter.toLowerCase();
-
-    // Filter by search term
     const matchesSearch =
       business.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       business.owner.toLowerCase().includes(searchTerm.toLowerCase()) ||
       business.id.toLowerCase().includes(searchTerm.toLowerCase());
-
-    // Filter by date if selected
     const matchesDate = selectedDate
       ? new Date(business.joinDate).toLocaleDateString() ===
         new Date(selectedDate).toLocaleDateString()
       : true;
-
     return matchesStatus && matchesSearch && matchesDate;
   });
 
-  // Pagination logic
   const indexOfLastBusiness = currentPage * businessesPerPage;
   const indexOfFirstBusiness = indexOfLastBusiness - businessesPerPage;
   const currentBusinesses = filteredBusinesses.slice(
@@ -304,30 +261,23 @@ const BusinessListTable = ({
         : [...prev, businessId]
     );
   };
+
   const statusColors = {
     Active: "bg-green-100 text-green-800",
     Inactive: "bg-gray-100 text-gray-800",
+    Suspended: "bg-red-100 text-red-800",
     default: "bg-blue-100 text-blue-800",
   };
 
-  const inventoryColors = {
-    "Well Stocked": "bg-green-100 text-green-800",
-    Adequate: "bg-blue-100 text-blue-800",
-    Low: "bg-yellow-100 text-yellow-800",
-    "Out of Stock": "bg-red-100 text-red-800",
-    default: "bg-gray-100 text-gray-800",
-  };
   const getStatusColor = (status) =>
     statusColors[status] || statusColors["default"];
-  const getPlanColor = (inventory) =>
-    inventoryColors[inventory] || inventoryColors["default"];
 
   return (
-    <div className="overflow-x-auto bg-white rounded-lg shadow">
-      <table className="min-w-full divide-y divide-gray-200">
+    <div className="overflow-x-auto">
+      <table className="min-w-full divide-y divide-gray-200 text-sm">
         <thead className="bg-gray-50">
           <tr>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               <input
                 type="checkbox"
                 onChange={handleSelectAll}
@@ -338,28 +288,28 @@ const BusinessListTable = ({
                 className="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
               />
             </th>
-            <th className="px-3 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Business ID
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Business Name
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Owner
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Location
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Join Date
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Plan
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Status
             </th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
               Actions
             </th>
           </tr>
@@ -368,7 +318,7 @@ const BusinessListTable = ({
           {currentBusinesses.length > 0 ? (
             currentBusinesses.map((business, index) => (
               <tr key={`${business.id}-${index}`}>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap">
                   <input
                     type="checkbox"
                     checked={selectedBusinesses.includes(business.id)}
@@ -376,39 +326,35 @@ const BusinessListTable = ({
                     className="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
                   />
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-sm text-gray-500">
                   {business.id}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
                   {business.name}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-sm text-gray-500">
                   {business.owner}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-sm text-gray-500">
                   {business.location}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-sm text-gray-500">
                   {new Date(business.joinDate).toLocaleDateString()}
                 </td>
-                <td
-                  className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${getPlanColor(
-                    business.plan
-                  )}`}
-                >
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-sm font-medium text-gray-900">
                   {business.plan}
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap">
                   <span
-                    className={`px-3 py-1 inline-flex text-xs font-semibold rounded-full ${getStatusColor(
+                    className={`px-2 py-1 inline-flex text-xs font-semibold rounded-full ${getStatusColor(
                       business.status
                     )}`}
                   >
                     {business.status}
                   </span>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  <button className="text-blue-600 hover:text-blue-900 mr-3">
+                <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-sm font-medium">
+                  <button className="text-blue-600 hover:text-blue-900 mr-2">
                     <FaEdit className="inline mr-1" /> Edit
                   </button>
                   <button className="text-red-600 hover:text-red-900">
@@ -421,7 +367,7 @@ const BusinessListTable = ({
             <tr>
               <td
                 colSpan="9"
-                className="px-6 py-4 text-center text-sm text-gray-500"
+                className="px-2 sm:px-4 py-4 text-center text-sm text-gray-500"
               >
                 No businesses found matching your criteria
               </td>
@@ -430,12 +376,10 @@ const BusinessListTable = ({
         </tbody>
       </table>
 
-      {/* Pagination */}
       {filteredBusinesses.length > 0 && (
-        <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200">
-          <div className="text-sm text-gray-700">
-            Showing{" "}
-            <span className="font-medium">{indexOfFirstBusiness + 1}</span> to{" "}
+        <div className="flex flex-col sm:flex-row items-center justify-between px-2 sm:px-4 py-4 border-t border-gray-200">
+          <div className="text-sm text-gray-700 mb-2 sm:mb-0">
+            Showing <span className="font-medium">{indexOfFirstBusiness + 1}</span> to{" "}
             <span className="font-medium">
               {Math.min(indexOfLastBusiness, filteredBusinesses.length)}
             </span>{" "}
@@ -446,7 +390,7 @@ const BusinessListTable = ({
             <button
               onClick={() => paginate(Math.max(1, currentPage - 1))}
               disabled={currentPage === 1}
-              className={`px-3 py-1 border rounded-md flex items-center ${
+              className={`px-3 py-1 border rounded-md flex items-center text-sm ${
                 currentPage === 1
                   ? "text-gray-400 cursor-not-allowed"
                   : "text-gray-700 hover:bg-gray-50"
@@ -454,13 +398,12 @@ const BusinessListTable = ({
             >
               <FaChevronLeft className="mr-1" />
             </button>
-
             {Array.from({ length: totalPages }, (_, i) => i + 1).map(
               (number) => (
                 <button
                   key={number}
                   onClick={() => paginate(number)}
-                  className={`px-3 py-1 border rounded-md ${
+                  className={`px-3 py-1 border rounded-md text-sm ${
                     currentPage === number
                       ? "bg-green-600 text-white"
                       : "text-gray-700 hover:bg-gray-50"
@@ -470,11 +413,10 @@ const BusinessListTable = ({
                 </button>
               )
             )}
-
             <button
               onClick={() => paginate(Math.min(totalPages, currentPage + 1))}
               disabled={currentPage === totalPages}
-              className={`px-3 py-1 border rounded-md flex items-center ${
+              className={`px-3 py-1 border rounded-md flex items-center text-sm ${
                 currentPage === totalPages
                   ? "text-gray-400 cursor-not-allowed"
                   : "text-gray-700 hover:bg-gray-50"
