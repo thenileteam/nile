@@ -10,6 +10,8 @@ import Finance from "./pages/FinancialManagement";
 import Orders from "./pages/OrderManagement";
 import Analytics from "./pages/UserAnalytics";
 import SupportTicket from "./pages/SupportTicket";
+import SystemManagement from "./pages/SystemManagement";
+
 
 
 const router = createBrowserRouter([
@@ -24,7 +26,8 @@ const router = createBrowserRouter([
       { path: "orders", element: <Orders /> },
       { path: "finance", element: <Finance /> },
       { path: "reports", element: <Analytics /> },
-       { path: "support", element: <SupportTicket  /> },
+      { path: "support", element: <SupportTicket /> },
+      { path: "/settings", element: <SystemManagement /> },
 
     ],
   },
