@@ -10,7 +10,7 @@ import {
 import { Calendar } from "lucide-react";
 
 const ProductManagement = () => {
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState("all Products");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedProducts, setSelectedProducts] = useState([]);
@@ -63,7 +63,7 @@ const ProductManagement = () => {
       <div className="flex flex-col w-full">
         {/* Tab Navigation */}
         <div className="flex flex-wrap gap-2 sm:gap-4">
-          {["all", "active", "inactive", "outOfStock"].map((tab) => (
+          {["all Products", "active", "inactive", "out of Stock"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -72,7 +72,7 @@ const ProductManagement = () => {
                 : "text-gray-500 hover:text-gray-700"
               }`}
             >
-              {tab === "outOfStock" ? "Out of Stock" : tab.charAt(0).toUpperCase() + tab.slice(1)} Products
+              {tab === "outOfStock" ? "Out of Stock" : tab.charAt(0).toUpperCase() + tab.slice(1)}
             </button>
           ))}
         </div>
@@ -223,7 +223,7 @@ const ProductListTable = ({
 
   const filteredProducts = allProducts.filter((product) => {
     const matchesStatus =
-      statusFilter === "all" ||
+      statusFilter === "all Products" ||
       (statusFilter === "outOfStock" && product.status === "Out of Stock") ||
       product.status.toLowerCase() === statusFilter.toLowerCase();
     const matchesSearch =

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   FaSearch,
   FaChevronLeft,
@@ -10,7 +10,7 @@ import {
 import { Calendar } from "lucide-react";
 
 const BusinessManagement = () => {
-  const [activeTab, setActiveTab] = useState("all");
+  const [activeTab, setActiveTab] = useState("all Businesses");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [selectedBusinesses, setSelectedBusinesses] = useState([]);
@@ -63,7 +63,7 @@ const BusinessManagement = () => {
       <div className="flex flex-col w-full">
         {/* Tab Navigation */}
         <div className="flex flex-wrap gap-2 sm:gap-4">
-          {["all", "active", "inactive", "suspended"].map((tab) => (
+          {["all Businesses", "active", "inactive", "suspended"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -72,7 +72,7 @@ const BusinessManagement = () => {
                 : "text-gray-500 hover:text-gray-700"
               }`}
             >
-              {tab.charAt(0).toUpperCase() + tab.slice(1)} Businesses
+              {tab.charAt(0).toUpperCase() + tab.slice(1)}
             </button>
           ))}
         </div>
@@ -223,7 +223,7 @@ const BusinessListTable = ({
 
   const filteredBusinesses = allBusinesses.filter((business) => {
     const matchesStatus =
-      statusFilter === "all" ||
+      statusFilter === "all Businesses" ||
       business.status.toLowerCase() === statusFilter.toLowerCase();
     const matchesSearch =
       business.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
