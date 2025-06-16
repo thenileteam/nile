@@ -1,13 +1,12 @@
 import { useState } from "react";
 import {
-  FaSearch,
   FaChevronLeft,
   FaChevronRight,
   FaEdit,
   FaTrash,
   FaArrowUp,
 } from "react-icons/fa";
-import { Calendar } from "lucide-react";
+import { Search, CalendarDays } from "lucide-react";
 
 const BusinessManagement = () => {
   const [activeTab, setActiveTab] = useState("all Businesses");
@@ -18,7 +17,9 @@ const BusinessManagement = () => {
   return (
     <div className="space-y-6 px-4 sm:px-6">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
-        <h2 className="text-xl font-bold text-gray-800 mb-4 sm:mb-0">Business Accounts</h2>
+        <h2 className="text-xl font-bold text-gray-800 mb-4 sm:mb-0">
+          Business Accounts
+        </h2>
         <div className="flex gap-3">
           <button className="bg-green-900 font-semibold text-white px-4 py-2 rounded-md text-sm">
             Export
@@ -32,8 +33,12 @@ const BusinessManagement = () => {
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
         <div className="bg-[#f4f4f0] p-4 rounded-md shadow-lg">
-          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">Total Businesses</p>
-          <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-4">66,500</h3>
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">
+            Total Businesses
+          </p>
+          <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-4">
+            66,500
+          </h3>
           <div className="flex items-center text-sm text-[#0a9b21]">
             <FaArrowUp className="mr-1" />
             <span className="mr-1">+1,250</span>
@@ -41,8 +46,12 @@ const BusinessManagement = () => {
           </div>
         </div>
         <div className="bg-[#f4f4f0] p-4 rounded-md shadow-lg">
-          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">Active Businesses</p>
-          <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-4">60,000</h3>
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">
+            Active Businesses
+          </p>
+          <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-4">
+            60,000
+          </h3>
           <div className="flex items-center text-sm text-[#0a9b21]">
             <FaArrowUp className="mr-1" />
             <span className="mr-1">15%</span>
@@ -50,8 +59,12 @@ const BusinessManagement = () => {
           </div>
         </div>
         <div className="bg-[#f4f4f0] p-4 rounded-md shadow-lg">
-          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">Premium Plan Adoption</p>
-          <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-4">35%</h3>
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">
+            Premium Plan Adoption
+          </p>
+          <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-4">
+            35%
+          </h3>
           <div className="flex items-center text-sm text-[#0a9b21]">
             <FaArrowUp className="mr-1" />
             <span className="mr-1">1.5%</span>
@@ -67,9 +80,10 @@ const BusinessManagement = () => {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-3 py-2 text-sm font-medium relative ${activeTab === tab
-                ? "text-green-600 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-green-600"
-                : "text-gray-500 hover:text-gray-700"
+              className={`px-3 py-2 text-sm font-medium relative ${
+                activeTab === tab
+                  ? "text-green-600 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-green-600"
+                  : "text-gray-500 hover:text-gray-700"
               }`}
             >
               {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -85,29 +99,36 @@ const BusinessManagement = () => {
               placeholder="Search Order..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-3 py-2 text-sm border border-gray-400 rounded-full outline-none"
+              className="w-full pl-6 pr-3 py-2 text-xs border border-gray-400 rounded-2xl outline-none"
             />
-            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
+            <Search
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500"
+              size={15}
+            />
           </div>
 
-          <div className="relative w-full sm:w-40">
+          <div className="relative w-full sm:w-31">
             <input
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-              id="datePicker"
+              id="datePickerTransactions"
             />
             <div
-              className="pl-10 pr-3 py-2 text-sm border border-gray-400 rounded-lg text-green-600 cursor-pointer flex items-center"
-              onClick={() => document.getElementById("datePicker").showPicker()}
+              className="pl-8 pr-3 py-2 text-sm border border-gray-400 rounded-lg text-green-600 cursor-pointer flex items-center"
+              onClick={() =>
+                document.getElementById("datePickerTransactions").showPicker()
+              }
             >
               {selectedDate || "Select Date"}
             </div>
-            <Calendar
+            <CalendarDays
               size={18}
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-green-600 cursor-pointer"
-              onClick={() => document.getElementById("datePicker").showPicker()}
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 text-green-600 cursor-pointer"
+              onClick={() =>
+                document.getElementById("datePickerTransactions").showPicker()
+              }
             />
           </div>
         </div>
@@ -379,7 +400,8 @@ const BusinessListTable = ({
       {filteredBusinesses.length > 0 && (
         <div className="flex flex-col sm:flex-row items-center justify-between px-2 sm:px-4 py-4 border-t border-gray-200">
           <div className="text-sm text-gray-700 mb-2 sm:mb-0">
-            Showing <span className="font-medium">{indexOfFirstBusiness + 1}</span> to{" "}
+            Showing{" "}
+            <span className="font-medium">{indexOfFirstBusiness + 1}</span> to{" "}
             <span className="font-medium">
               {Math.min(indexOfLastBusiness, filteredBusinesses.length)}
             </span>{" "}

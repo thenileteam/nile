@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  FaSearch,
   FaChevronLeft,
   FaChevronRight,
   FaEdit,
@@ -8,7 +7,7 @@ import {
   FaArrowUp,
   FaChevronDown,
 } from "react-icons/fa";
-import { Calendar } from "lucide-react";
+import {Search, CalendarDays } from "lucide-react";
 
 const OrderManagement = () => {
   const [activeTab, setActiveTab] = useState("orders");
@@ -85,16 +84,16 @@ const OrderManagement = () => {
           <div className="relative w-full sm:w-64">
             <input
               type="text"
-              placeholder="Search orders..."
+              placeholder="Search Order..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-3 py-2 text-sm border border-gray-400 rounded-full outline-none"
+              className="w-full pl-6 pr-3 py-2 text-xs border border-gray-400 rounded-2xl outline-none"
             />
-            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
+            <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500" size={15} />
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <div className="relative w-full sm:w-40">
+            <div className="relative w-full sm:w-29">
               <button
                 onClick={() => setShowStatusDropdown(!showStatusDropdown)}
                 className="flex items-center justify-between pl-3 pr-10 py-2 text-sm border border-gray-400 rounded-lg text-gray-700 w-full"
@@ -122,26 +121,30 @@ const OrderManagement = () => {
               )}
             </div>
 
-            <div className="relative w-full sm:w-40">
-              <input
-                type="date"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                id="datePicker"
-              />
-              <div
-                className="pl-10 pr-3 py-2 text-sm border border-gray-400 rounded-lg text-green-600 cursor-pointer flex items-center"
-                onClick={() => document.getElementById("datePicker").showPicker()}
-              >
-                {selectedDate || "Select Date"}
-              </div>
-              <Calendar
-                size={18}
-                className="absolute left-3 top-1/2 transform -translate-y-1/2 text-green-600 cursor-pointer"
-                onClick={() => document.getElementById("datePicker").showPicker()}
-              />
+            <div className="relative w-full sm:w-31">
+            <input
+              type="date"
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+              id="datePickerTransactions"
+            />
+            <div
+              className="pl-8 pr-3 py-2 text-sm border border-gray-400 rounded-lg text-green-600 cursor-pointer flex items-center"
+              onClick={() =>
+                document.getElementById("datePickerTransactions").showPicker()
+              }
+            >
+              {selectedDate || "Select Date"}
             </div>
+            <CalendarDays
+              size={18}
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 text-green-600 cursor-pointer"
+              onClick={() =>
+                document.getElementById("datePickerTransactions").showPicker()
+              }
+            />
+          </div>
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import RoleAssignmentsTab from "../pages/userManagement/RoleAssignmentsTab";
 import ActivityLogsTab from "../pages/userManagement/ActivityLogsTab";
 
 const UserManagement = () => {
-  const [activeTab, setActiveTab] = useState("userList"); // Changed default to 'userList'
+  const [activeTab, setActiveTab] = useState("userList");
 
   return (
     <div className="space-y-6 px-4 sm:px-6">

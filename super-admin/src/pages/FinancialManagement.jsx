@@ -15,7 +15,7 @@ const FinancialManagement = () => {
 
   return (
     <div className="space-y-6 px-4 sm:px-6">
-      {/* Main Header with dynamic buttons/dropdown */}
+      {/* Main Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
         <h2 className="text-xl font-bold text-gray-800 mb-4 sm:mb-0">
           Financial Management
@@ -96,7 +96,7 @@ const FinancialManagement = () => {
 
       <div className="flex flex-col w-full">
         {/* Tab Navigation */}
-        <div className="flex flex-wrap gap-2 sm:gap-4 border-b border-gray-200">
+        <div className="flex flex-wrap gap-2 sm:gap-4">
           <button
             onClick={() => setActiveTab("overview")}
             className={`px-3 py-2 text-sm font-medium relative ${

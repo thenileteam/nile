@@ -1,192 +1,249 @@
-import React, { useState } from "react";
-import { FaSearch, FaChevronDown, FaChevronLeft, FaChevronRight, FaEdit, FaTrash } from "react-icons/fa";
-import { Calendar } from "lucide-react";
+import { useState } from "react";
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaArrowUp,
+  FaChevronDown,
+} from "react-icons/fa";
+import { CalendarDays, Search } from "lucide-react";
 
-const SupportTickets = () => {
+const SupportTicket = () => {
   const [activeTab, setActiveTab] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
-  const [selectedTickets, setSelectedTickets] = useState([]);
-  const [statusFilter, setStatusFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState("All Status");
+  const [showStatusDropdown, setShowStatusDropdown] = useState(false);
 
-  // Stats data
-  const stats = [
-    { title: "Open Tickets", value: "42", change: "10% vs. Yesterday" },
-    { title: "Resolved Today", value: "18", change: "10% vs. Yesterday" },
-    { title: "Avg. Response Time", value: "2.4h", change: "10% vs. Yesterday" },
-    { title: "Customer Satisfaction", value: "94%", change: "12.7% vs. last month" }
-  ];
-
-  // Ticket data with additional fields
+  // Dummy Data for Tickets
   const allTickets = [
-    { 
-      id: "TKT-O01", 
-      subject: "Payment not processing", 
-      date: "2023-04-15", 
-      customer: "John Doe", 
+    {
+      id: "TKT-001",
+      subject: "Login Issue",
+      date: "2023-04-15",
+      customer: "John Doe",
       status: "Open",
       priority: "High",
-      assignee: "Support Team 1"
+      assignee: "Alice",
     },
-    { 
-      id: "TKT-O02", 
-      subject: "How to reset my password?", 
-      date: "2023-04-15", 
-      customer: "John Doe", 
+    {
+      id: "TKT-002",
+      subject: "Payment Error",
+      date: "2023-04-14",
+      customer: "Jane Smith",
       status: "In Progress",
-      priority: "Medium",
-      assignee: "Support Team 2"
+      priority: "Critical",
+      assignee: "Bob",
     },
-    { 
-      id: "TKT-O03", 
-      subject: "Product not delivered", 
-      date: "2023-04-15", 
-      customer: "John Doe", 
-      status: "Open",
-      priority: "High",
-      assignee: "Support Team 1"
-    },
-    { 
-      id: "TKT-O04", 
-      subject: "Refund request", 
-      date: "2023-04-15", 
-      customer: "John Doe", 
+    {
+      id: "TKT-003",
+      subject: "Product Inquiry",
+      date: "2023-04-13",
+      customer: "Robert Johnson",
       status: "Resolved",
       priority: "Low",
-      assignee: "Support Team 3"
+      assignee: "Charlie",
     },
-    { 
-      id: "TKT-O05", 
-      subject: "Product not delivered", 
-      date: "2023-04-15", 
-      customer: "John Doe", 
+    {
+      id: "TKT-004",
+      subject: "Account Deactivation",
+      date: "2023-04-12",
+      customer: "Emily Davis",
       status: "Open",
       priority: "Medium",
-      assignee: "Support Team 2"
+      assignee: "Alice",
     },
-    { 
-      id: "TKT-O06", 
-      subject: "Product not delivered", 
-      date: "2023-04-15", 
-      customer: "John Doe", 
+    {
+      id: "TKT-005",
+      subject: "Refund Request",
+      date: "2023-04-11",
+      customer: "Michael Wilson",
       status: "In Progress",
       priority: "High",
-      assignee: "Support Team 1"
+      assignee: "Bob",
     },
-    { 
-      id: "TKT-O07", 
-      subject: "Product not delivered", 
-      date: "2023-04-15", 
-      customer: "John Doe", 
-      status: "Open",
-      priority: "Low",
-      assignee: "Support Team 3"
-    },
-    { 
-      id: "TKT-O08", 
-      subject: "Product not delivered", 
-      date: "2023-04-15", 
-      customer: "John Doe", 
+    {
+      id: "TKT-006",
+      subject: "Feature Request",
+      date: "2023-04-10",
+      customer: "Sarah Brown",
       status: "Resolved",
+      priority: "Low",
+      assignee: "Charlie",
+    },
+    {
+      id: "TKT-007",
+      subject: "Order Tracking",
+      date: "2023-04-09",
+      customer: "David Lee",
+      status: "Open",
       priority: "Medium",
-      assignee: "Support Team 2"
-    }
+      assignee: "Alice",
+    },
+    {
+      id: "TKT-008",
+      subject: "Technical Glitch",
+      date: "2023-04-08",
+      customer: "Jennifer Taylor",
+      status: "In Progress",
+      priority: "Critical",
+      assignee: "Bob",
+    },
   ];
 
-  // Filter tickets based on search, date, and status
-  const filteredTickets = allTickets.filter(ticket => {
-    const matchesStatus = statusFilter === "all" || ticket.status.toLowerCase() === statusFilter.toLowerCase();
-    const matchesSearch = 
-      ticket.subject.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      ticket.customer.toLowerCase().includes(searchTerm.toLowerCase()) || 
-      ticket.id.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesDate = selectedDate 
-      ? new Date(ticket.date).toLocaleDateString() === new Date(selectedDate).toLocaleDateString()
+  const filteredTickets = allTickets.filter((ticket) => {
+    const matchesTab =
+      activeTab === "all" ||
+      ticket.status.toLowerCase() === activeTab.toLowerCase();
+    const matchesSearch =
+      ticket.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      ticket.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      ticket.customer.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      ticket.assignee.toLowerCase().includes(searchTerm.toLowerCase()); // Include assignee in search
+    const matchesStatusDropdown =
+      statusFilter === "All Status" ||
+      ticket.status.toLowerCase() === statusFilter.toLowerCase();
+    const matchesDate = selectedDate
+      ? new Date(ticket.date).toLocaleDateString() ===
+        new Date(selectedDate).toLocaleDateString()
       : true;
-    return matchesStatus && matchesSearch && matchesDate;
+
+    return matchesTab && matchesSearch && matchesStatusDropdown && matchesDate;
   });
 
-  // Pagination
+  // Pagination Logic
   const [currentPage, setCurrentPage] = useState(1);
   const ticketsPerPage = 5;
   const indexOfLastTicket = currentPage * ticketsPerPage;
   const indexOfFirstTicket = indexOfLastTicket - ticketsPerPage;
-  const currentTickets = filteredTickets.slice(indexOfFirstTicket, indexOfLastTicket);
+  const currentTickets = filteredTickets.slice(
+    indexOfFirstTicket,
+    indexOfLastTicket
+  );
   const totalPages = Math.ceil(filteredTickets.length / ticketsPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  // Handle ticket selection
-  const handleSelectAll = (e) => {
-    if (e.target.checked) {
-      setSelectedTickets(currentTickets.map(ticket => ticket.id));
-    } else {
-      setSelectedTickets([]);
+  const getStatusColor = (status) => {
+    switch (status.toLowerCase()) {
+      case "open":
+        return "bg-green-100 text-green-800";
+      case "in progress":
+        return "bg-blue-100 text-blue-800";
+      case "resolved":
+        return "bg-purple-100 text-purple-800";
+      default:
+        return "bg-gray-100 text-gray-800";
     }
   };
 
-  const handleSelectTicket = (ticketId) => {
-    setSelectedTickets(prev =>
-      prev.includes(ticketId)
-        ? prev.filter(id => id !== ticketId)
-        : [...prev, ticketId]
-    );
+  const getPriorityColor = (priority) => {
+    switch (priority.toLowerCase()) {
+      case "critical":
+        return "bg-red-100 text-red-800";
+      case "high":
+        return "bg-orange-100 text-orange-800";
+      case "medium":
+        return "bg-yellow-100 text-yellow-800";
+      case "low":
+        return "bg-gray-100 text-gray-800";
+      default:
+        return "bg-gray-100 text-gray-800";
+    }
   };
-
-  // Status colors
-  const statusColors = {
-    Open: "bg-yellow-100 text-yellow-800",
-    "In Progress": "bg-blue-100 text-blue-800",
-    Resolved: "bg-green-100 text-green-800",
-    default: "bg-gray-100 text-gray-800"
-  };
-
-  // Priority colors
-  const priorityColors = {
-    High: "bg-red-100 text-red-800",
-    Medium: "bg-orange-100 text-orange-800",
-    Low: "bg-green-100 text-green-800",
-    default: "bg-gray-100 text-gray-800"
-  };
-
-  const getStatusColor = (status) => statusColors[status] || statusColors["default"];
-  const getPriorityColor = (priority) => priorityColors[priority] || priorityColors["default"];
 
   return (
     <div className="space-y-6 px-4 sm:px-6">
-      <h2 className="text-xl font-bold text-gray-800">Support & Tickets</h2>
-
-      {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-        {stats.map((stat, index) => (
-          <div key={index} className="bg-[#f4f4f0] p-4 rounded-md shadow-sm">
-            <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">{stat.title}</p>
-            <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-4">{stat.value}</h3>
-            <div className="flex items-center text-sm text-[#0a9b21]">
-              <span>{stat.change}</span>
-            </div>
-          </div>
-        ))}
+      {/* Header and Buttons */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+        <h2 className="text-xl font-bold text-gray-800 mb-4 sm:mb-0">
+          Support & Tickets
+        </h2>
+        <div className="flex gap-3">
+          <button className="bg-green-900 font-semibold text-white px-4 py-2 rounded-md text-sm">
+            Export
+          </button>
+          <button className="border border-green-900 font-semibold text-green-900 px-4 py-2 rounded-md text-sm">
+            New Ticket
+          </button>
+        </div>
       </div>
 
-      {/* Tabs and Filters */}
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-6">
+        <div className="bg-[#f4f4f0d2] p-4 rounded-md shadow-lg">
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">
+            Open Tickets
+          </p>
+          <h3 className="text-lg sm:text-2xl font-bold text-[#0a9b21] mb-4">
+            350
+          </h3>
+          <div className="flex items-center text-sm text-[#0a9b21]">
+            <FaArrowUp className="mr-1" />
+            <span>↑ 10% vs last month</span>
+          </div>
+        </div>
+        <div className="bg-[#f4f4f0d2] p-4 rounded-md shadow-lg">
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">
+            Resolved Today
+          </p>
+          <h3 className="text-lg sm:text-2xl font-bold text-[#0a9b21] mb-4">
+            25
+          </h3>
+          <div className="flex items-center text-sm text-[#0a9b21]">
+            <FaArrowUp className="mr-1" />
+            <span>↑ 12.7% vs last month</span>
+          </div>
+        </div>
+        <div className="bg-[#f4f4f0d2] p-4 rounded-md shadow-lg">
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">
+            Avg. Response Time
+          </p>
+          <h3 className="text-lg sm:text-2xl font-bold text-[#0a9b21] mb-4">
+            2h 15m
+          </h3>
+          <div className="flex items-center text-sm text-[#0a9b21]">
+            <FaArrowUp className="mr-1" />
+            <span>↓ 8.3% vs last month</span>
+          </div>
+        </div>
+        <div className="bg-[#f4f4f0d2] p-4 rounded-md shadow-lg">
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">
+            Customer Satisfaction
+          </p>
+          <h3 className="text-lg sm:text-2xl font-bold text-[#0a9b21] mb-4">
+            92%
+          </h3>
+          <div className="flex items-center text-sm text-[#0a9b21]">
+            <FaArrowUp className="mr-1" />
+            <span>↑ 5.2% vs last month</span>
+          </div>
+        </div>
+      </div>
+
       <div className="flex flex-col w-full">
+        {/* Tab Navigation (All, Open, In Progress, Resolved) */}
         <div className="flex flex-wrap gap-2 sm:gap-4">
-          {["all", "Open", "In Progress", "Resolved"].map((tab) => (
+          {[
+            { id: "all", name: "All" },
+            { id: "open", name: "Open" },
+            { id: "in progress", name: "In Progress" },
+            { id: "resolved", name: "Resolved" },
+          ].map((tab) => (
             <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
+              key={tab.id}
+              onClick={() => setActiveTab(tab.id)}
               className={`px-3 py-2 text-sm font-medium relative ${
-                activeTab === tab
+                activeTab === tab.id
                   ? "text-green-600 after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-green-600"
                   : "text-gray-500 hover:text-gray-700"
               }`}
             >
-              {tab === "all" ? "All" : tab}
+              {tab.name}
             </button>
           ))}
         </div>
 
+        {/* Search, Status Dropdown, and Date Picker */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full py-4 gap-4">
           <div className="relative w-full sm:w-64">
             <input
@@ -194,35 +251,73 @@ const SupportTickets = () => {
               placeholder="Search Order..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-3 py-2 text-sm border border-gray-400 rounded-full outline-none"
+              className="w-full pl-6 pr-3 py-2 text-xs border border-gray-400 rounded-2xl outline-none"
             />
-            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
+            <Search
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500"
+              size={15}
+            />
           </div>
-
-          <div className="relative w-full sm:w-40">
-            <input
-              type="date"
-              value={selectedDate}
-              onChange={(e) => setSelectedDate(e.target.value)}
-              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-              id="datePicker"
-            />
-            <div
-              className="pl-10 pr-3 py-2 text-sm border border-gray-400 rounded-lg text-green-600 cursor-pointer flex items-center"
-              onClick={() => document.getElementById("datePicker").showPicker()}
-            >
-              {selectedDate || "Select Date"}
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+            {/* Status Dropdown */}
+            <div className="relative w-full sm:w-27">
+              <button
+                onClick={() => setShowStatusDropdown(!showStatusDropdown)}
+                className="flex items-center justify-between pl-2 pr-10 py-2 text-sm border border-gray-400 rounded-lg text-gray-700 w-full"
+              >
+                {statusFilter}
+                <FaChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
+              </button>
+              {showStatusDropdown && (
+                <div className="absolute z-10 mt-1 w-full sm:w-40 bg-white shadow-lg rounded-md py-1">
+                  {["All Status", "Open", "In Progress", "Resolved"].map(
+                    (status) => (
+                      <button
+                        key={status}
+                        onClick={() => {
+                          setStatusFilter(status);
+                          setShowStatusDropdown(false);
+                        }}
+                        className="block w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      >
+                        {status}
+                      </button>
+                    )
+                  )}
+                </div>
+              )}
             </div>
-            <Calendar
-              size={18}
-              className="absolute left-3 top-1/2 transform -translate-y-1/2 text-green-600 cursor-pointer"
-              onClick={() => document.getElementById("datePicker").showPicker()}
-            />
+
+            {/* Date Picker */}
+            <div className="relative w-full sm:w-31">
+              <input
+                type="date"
+                value={selectedDate}
+                onChange={(e) => setSelectedDate(e.target.value)}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                id="datePickerTransactions"
+              />
+              <div
+                className="pl-8 pr-3 py-2 text-sm border border-gray-400 rounded-lg text-green-600 cursor-pointer flex items-center"
+                onClick={() =>
+                  document.getElementById("datePickerTransactions").showPicker()
+                }
+              >
+                {selectedDate || "Select Date"}
+              </div>
+              <CalendarDays
+                size={18}
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 text-green-600 cursor-pointer"
+                onClick={() =>
+                  document.getElementById("datePickerTransactions").showPicker()
+                }
+              />
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Tickets Table */}
+      {/* Tickets List Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200 text-sm">
           <thead className="bg-gray-50">
@@ -230,11 +325,6 @@ const SupportTickets = () => {
               <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 <input
                   type="checkbox"
-                  onChange={handleSelectAll}
-                  checked={
-                    selectedTickets.length > 0 &&
-                    selectedTickets.length === currentTickets.length
-                  }
                   className="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
                 />
               </th>
@@ -255,10 +345,12 @@ const SupportTickets = () => {
               </th>
               <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Priority
-              </th>
+              </th>{" "}
+              {/* New column header */}
               <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Assignee
-              </th>
+              </th>{" "}
+              {/* New column header */}
               <th className="px-2 sm:px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Actions
               </th>
@@ -271,8 +363,6 @@ const SupportTickets = () => {
                   <td className="px-2 sm:px-4 py-3 whitespace-nowrap">
                     <input
                       type="checkbox"
-                      checked={selectedTickets.includes(ticket.id)}
-                      onChange={() => handleSelectTicket(ticket.id)}
                       className="h-4 w-4 text-green-600 border-gray-300 rounded focus:ring-green-500"
                     />
                   </td>
@@ -305,16 +395,15 @@ const SupportTickets = () => {
                     >
                       {ticket.priority}
                     </span>
-                  </td>
+                  </td>{" "}
+                  {/* New column data */}
                   <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-sm text-gray-500">
                     {ticket.assignee}
-                  </td>
-                  <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-sm font-medium">
-                    <button className="text-blue-600 hover:text-blue-900 mr-2">
-                      <FaEdit className="inline mr-1" /> Edit
-                    </button>
-                    <button className="text-red-600 hover:text-red-900">
-                      <FaTrash className="inline mr-1" /> Delete
+                  </td>{" "}
+                  {/* New column data */}
+                  <td className="px-2 sm:px-4 py-3 whitespace-nowrap text-right text-sm font-medium">
+                    <button className="text-gray-500 hover:text-gray-700">
+                      <span className="font-bold text-lg">...</span>
                     </button>
                   </td>
                 </tr>
@@ -332,16 +421,9 @@ const SupportTickets = () => {
           </tbody>
         </table>
 
+        {/* Pagination */}
         {filteredTickets.length > 0 && (
-          <div className="flex flex-col sm:flex-row items-center justify-between px-2 sm:px-4 py-4 border-t border-gray-200">
-            <div className="text-sm text-gray-700 mb-2 sm:mb-0">
-              Showing <span className="font-medium">{indexOfFirstTicket + 1}</span> to{" "}
-              <span className="font-medium">
-                {Math.min(indexOfLastTicket, filteredTickets.length)}
-              </span>{" "}
-              of <span className="font-medium">{filteredTickets.length}</span>{" "}
-              tickets
-            </div>
+          <div className="flex flex-col sm:flex-row items-center justify-end px-2 sm:px-4 py-4 border-t border-gray-200">
             <div className="flex space-x-2">
               <button
                 onClick={() => paginate(Math.max(1, currentPage - 1))}
@@ -388,4 +470,4 @@ const SupportTickets = () => {
   );
 };
 
-export default SupportTickets;
+export default SupportTicket;
