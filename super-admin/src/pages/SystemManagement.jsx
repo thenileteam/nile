@@ -19,7 +19,7 @@ const SystemManagement = () => {
             Refresh
           </button>
           <button className="border border-green-900 font-semibold text-green-900 px-4 py-2 rounded-md text-sm flex items-center">
-           Backup
+            Backup
           </button>
         </div>
       </div>
@@ -27,10 +27,10 @@ const SystemManagement = () => {
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
         <div className="bg-[#f4f4f0] p-4 rounded-md shadow-sm border border-gray-100">
-          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-2">
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-5">
             System Status
           </p>
-          <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-2">
+          <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-5">
             Operational
           </h3>
           <div className="flex items-center text-sm text-[#6e6e6e]">
@@ -38,16 +38,16 @@ const SystemManagement = () => {
           </div>
         </div>
         <div className="bg-[#f4f4f0] p-4 rounded-md shadow-sm border border-gray-100">
-          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-2">
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-3">
             Server Load
           </p>
           <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-2">
             Cpu Usage{" "}
             <span className="text-gray-800 font-normal text-base">42%</span>
           </h3>
-          <div className="w-full bg-gray-300 h-2 rounded-full mb-1">
+          <div className="w-full bg-gray-300 h-2 rounded-full mb-5">
             <div
-              className="bg-green-600 h-2 rounded-full"
+              className="bg-[blue] h-3 rounded-full"
               style={{ width: "42%" }}
             ></div>
           </div>
@@ -56,10 +56,10 @@ const SystemManagement = () => {
           </div>
         </div>
         <div className="bg-[#f4f4f0] p-4 rounded-md shadow-sm border border-gray-100">
-          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-2">
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-5">
             Database Status
           </p>
-          <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-2">
+          <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-5">
             Connected
           </h3>
           <div className="flex items-center text-sm text-[#6e6e6e]">
@@ -67,10 +67,10 @@ const SystemManagement = () => {
           </div>
         </div>
         <div className="bg-[#f4f4f0] p-4 rounded-md shadow-sm border border-gray-100">
-          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-2">
+          <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-5">
             Active Users
           </p>
-          <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-2">
+          <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-5">
             1,245
           </h3>
           <div className="flex items-center text-sm text-[#6e6e6e]">
