@@ -1,192 +1,264 @@
-import React, { useState, useEffect } from "react";
-import { FaArrowUp } from "react-icons/fa";
+import React from "react";
+import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import {
-  PieChart,
-  Pie,
-  Cell,
-  BarChart,
-  Bar,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   Tooltip,
   ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
 } from "recharts";
+import { useDashboardData } from "../datahooks/useDashboardData"; // 1. Import your new hook
 
-function Dashboard() {
-  const [pieData, setPieData] = useState([]);
-  const [barData, setBarData] = useState([]);
+// --- Helper Components ---
 
-  useEffect(() => {
-    const pieDummy = [
-      { name: "Completed", value: 65, color: "#16a34a" },
-      { name: "Processing", value: 20, color: "#3b82f6" },
-      { name: "Cancelled", value: 5, color: "#ef4444" },
-    ];
-    const barDummy = [
-      { name: "Jan", revenue: 250000 },
-      { name: "Feb", revenue: 450000 },
-      { name: "Mar", revenue: 300000 },
-      { name: "Apr", revenue: 750000 },
-      { name: "May", revenue: 1000000 },
-      { name: "Jun", revenue: 850000 },
-      { name: "Jul", revenue: 970000 },
-      { name: "Aug", revenue: 724843 },
-      { name: "Sep", revenue: 480000 },
-      { name: "Oct", revenue: 650000 },
-      { name: "Nov", revenue: 300000 },
-      { name: "Dec", revenue: 520000 },
-    ];
-    setPieData(pieDummy);
-    setBarData(barDummy);
-  }, []);
-
+// Stat Card
+const StatCard = ({ title, value, change, changeType }) => {
+  const isPositive = changeType === "positive";
   return (
-    <div className="flex flex-col h-full space-y-6 px-4 sm:px-6">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
-        <h2 className="text-xl font-bold text-gray-800 mb-4 sm:mb-0">Welcome Super Admin</h2>
-        <div className="flex gap-3">
-          <button className="bg-green-900 font-semibold text-white px-4 py-2 rounded-md text-sm">
-            Export
-          </button>
-          <button className="border border-green-900 font-semibold text-green-900 px-4 py-2 rounded-md text-sm">
-            Refresh
-          </button>
-        </div>
+    <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-100">
+      <p className="text-sm text-gray-500 mb-2">{title}</p>
+      <h3
+        className={`text-3xl font-bold mb-3 ${
+          !isPositive ? "text-red-600" : "text-gray-900"
+        }`}
+      >
+        {value}
+      </h3>
+      <div
+        className={`flex items-center text-xs ${
+          !isPositive ? "text-red-600" : "text-green-600"
+        }`}
+      >
+        {isPositive ? (
+          <FaArrowUp size={12} className="mr-1" />
+        ) : (
+          <FaArrowDown size={12} className="mr-1" />
+        )}
+        <span>{change}</span>
+        <span className="text-gray-500 ml-1">vs last Month</span>
+      </div>
+    </div>
+  );
+};
+
+// Table Status Label
+const StatusLabel = ({ status }) => {
+  const statusColor =
+    status === "Successful"
+      ? "text-green-700 bg-green-100"
+      : "text-red-700 bg-red-100";
+  return (
+    <span
+      className={`px-3 py-1 text-xs font-medium rounded-full ${statusColor}`}
+    >
+      {status}
+    </span>
+  );
+};
+
+// --- Mock Data for Table (until API is ready) ---
+const recentSettlementsData = [
+  { id: "5321", merchant: "Abraham Lincoln", amount: "₦20,000", status: "Successful", orders: 15, date: "12/09/2024" },
+  { id: "5322", merchant: "Abraham Lincoln", amount: "₦20,000", status: "Failed", orders: 15, date: "12/09/2024" },
+  { id: "5323", merchant: "Abraham Lincoln", amount: "₦20,000", status: "Failed", orders: 15, date: "12/09/2024" },
+  { id: "5324", merchant: "Abraham Lincoln", amount: "₦20,000", status: "Successful", orders: 15, date: "12/09/2024" },
+]; //
+
+// --- Pie Chart Colors ---
+const FAILED_ORDER_COLORS = ["#16a34a", "#004324", "#86efac"]; //
+
+// --- Main Dashboard Component ---
+export default function Dashboard() {
+  // 2. Call the hook to get data
+  const { stats, trends, failedOrders, loading, error } = useDashboardData();
+
+  // 3. Handle Loading and Error states
+  if (loading) {
+    return <div className="p-6">Loading dashboard data...</div>;
+  }
+  if (error) {
+    return <div className="p-6 text-red-600">Error: {error}</div>;
+  }
+
+  // 4. Render the UI with data
+  return (
+    <div className="space-y-6">
+      {/* 1. Header */}
+      <div>
+        <h2 className="text-2xl font-bold text-gray-800">
+          Dashboard Overview
+        </h2>
+        <p className="text-sm text-gray-500">
+          Here's an overview of your Global system
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-        {["Total Active Businesses", "Total Individual Users", "Total Orders", "Monthly Revenue"].map((label, idx) => (
-          <div key={idx} className="bg-[#f4f4f0] p-4 rounded-md shadow-sm">
-            <p className="text-base sm:text-lg text-[#6e6e6e] font-medium mb-4">{label}</p>
-            <h3 className="text-lg sm:text-xl font-bold text-[#0a9b21] mb-4">
-              {label === "Monthly Revenue" ? "₦45.2M" : idx === 1 ? "125,430" : "50,000"}
-            </h3>
-            <div className="flex items-center text-sm text-[#0a9b21]">
-              <FaArrowUp className="mr-1" />
-              <span>1.5%</span>
-              <span className="text-[#6e6e6e] ml-2">vs last Month</span>
-            </div>
-          </div>
-        ))}
+      {/* 2. Stats Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* We use 'orders' and 'settlements' from the processed stats object */}
+        <StatCard
+          title="This Week Orders"
+          value={stats?.orders?.value || "0"}
+          change="+1.5%" // Note: API doesn't provide change% yet
+          changeType="positive"
+        />
+        <StatCard
+          title="This Week Settlements"
+          value={stats?.settlements?.value || "0"}
+          change="+1.5%" // Note: API doesn't provide change% yet
+          changeType="positive"
+        />
+        <StatCard
+          title="Active Merchants"
+          value={stats?.merchants?.value || "0"}
+          change="+1.5%" // Note: API doesn't provide change% yet
+          changeType="positive"
+        />
+        <StatCard
+          title="Failed Orders This Week"
+          value={stats?.failed_orders?.value || "0"}
+          change="-2.3%" // Note: API doesn't provide change% yet
+          changeType="negative"
+        />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-        <div className="bg-[#f4f4f0] p-4 rounded-md shadow-sm">
-          <h4 className="font-semibold mb-2 text-sm sm:text-base">Running Year</h4>
-          <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={barData}>
-                <XAxis dataKey="name" stroke="#6e6e6e" />
-                <YAxis
-                  stroke="#6e6e6e"
-                  tickFormatter={(value) =>
-                    value >= 1_000_000
-                      ? `₦${(value / 1_000_000).toFixed(1)}M`
-                      : value >= 1_000
-                      ? `₦${(value / 1_000).toFixed(0)}K`
-                      : `₦${value}`
-                  }
+      {/* 3. Charts Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Orders Trend (Line Chart) */}
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+          <h4 className="font-semibold text-gray-800 mb-1">Orders Trend</h4>
+          <p className="text-xs text-gray-400 mb-4">January - Dec 2025</p>
+          <div style={{ width: "100%", height: 300 }}>
+            <ResponsiveContainer>
+              <LineChart data={trends}>
+                <XAxis dataKey="month" axisLine={false} tickLine={false} style={{ fontSize: '12px' }} />
+                <YAxis axisLine={false} tickLine={false} style={{ fontSize: '12px' }} />
+                <Tooltip />
+                <Line
+                  type="monotone"
+                  dataKey="value" // 'value' from GET /dashboard/trends
+                  stroke="#16a34a"
+                  strokeWidth={2}
+                  dot={false}
                 />
-                <Tooltip
-                  formatter={(value) =>
-                    value >= 1_000_000
-                      ? `₦${(value / 1_000_000).toFixed(1)}M`
-                      : value >= 1_000
-                      ? `₦${(value / 1_000).toFixed(0)}K`
-                      : `₦${value}`
-                  }
-                />
-                <Bar dataKey="revenue" fill="#0a9b21" radius={[4, 4, 0, 0]} barSize={11} />
-              </BarChart>
+              </LineChart>
             </ResponsiveContainer>
           </div>
+          <p className="text-xs text-gray-500 mt-4">
+            <span className="font-semibold text-green-600">Trending up by 5.2% this month ↗</span>
+          </p>
         </div>
 
-        <div className="bg-[#f4f4f0] p-4 rounded-md shadow-sm">
-          <h4 className="font-semibold mb-4 text-sm sm:text-base">System Health</h4>
-          <div className="space-y-2 text-sm">
-            {[
-              { name: "API Services", uptime: "100%", status: "Operational", color: "text-green-600" },
-              { name: "Database", uptime: "99.9%", status: "Operational", color: "text-green-600" },
-              { name: "Payment Gateway", uptime: "92.5%", status: "Operational", color: "text-yellow-500" },
-              { name: "Database", uptime: "87.5%", status: "Operational", color: "text-red-600" },
-            ].map((item, idx) => (
-              <div key={idx} className="flex items-center justify-between">
-                <div>
-                  <div className="font-bold text-[#004324] text-sm sm:text-base">{item.name}</div>
-                  <span className="text-gray-500">{item.uptime} Uptime</span>
-                </div>
-                <span className={`text-xs px-2 py-0.5 rounded-full border ${item.color} border-current`}>
-                  {item.status}
-                </span>
-              </div>
-            ))}
-            <div className="mt-4">
-              <p className="text-sm font-medium mb-1">Overall System Health</p>
-              <div className="w-full bg-gray-300 h-2 rounded-full">
-                <div className="bg-green-600 h-2 rounded-full" style={{ width: "91%" }}></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-        <div className="bg-[#f4f4f0] p-4 rounded-md shadow-sm">
-          <h4 className="font-semibold mb-4 text-sm sm:text-base">Top Selling Product Categories</h4>
-          {[
-            { name: "Electronics", width: "80%" },
-            { name: "Clothing", width: "100%" },
-            { name: "Food", width: "95%" },
-            { name: "Others", width: "70%" },
-          ].map((cat, idx) => (
-            <div key={idx} className="mb-3">
-              <div className="flex justify-between text-sm text-gray-600 mb-1">
-                <span>{cat.name}</span>
-                <span>{cat.width}</span>
-              </div>
-              <div className="w-full bg-green-100 h-3 rounded">
-                <div className="bg-green-700 h-3 rounded" style={{ width: cat.width }}></div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="bg-[#f4f4f0] p-4 rounded-md shadow-sm">
-          <h4 className="font-semibold mb-4 text-sm sm:text-base">Order Status</h4>
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between">
-            <div className="text-sm space-y-2 mb-4 sm:mb-0">
-              {pieData.map((item, idx) => (
-                <div key={idx} className="flex items-center gap-2">
-                  <span className="w-3 h-3 rounded-full" style={{ backgroundColor: item.color }}></span>
-                  <span className="font-medium text-[#004324]">{item.name}</span>
-                  <span className="text-gray-500">{item.value}%</span>
-                </div>
-              ))}
-            </div>
-            <div className="h-40 w-40 mx-auto sm:mx-0">
-              <ResponsiveContainer width="100%" height="100%">
+        {/* Failed Orders (Pie Chart) */}
+        <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+          <h4 className="font-semibold text-gray-800 mb-1">Failed Orders</h4>
+          <p className="text-xs text-gray-400 mb-4">January - Dec 2025</p>
+          <div className="flex flex-col sm:flex-row items-center justify-between">
+            <div style={{ width: 200, height: 200 }}>
+              <ResponsiveContainer>
                 <PieChart>
                   <Pie
-                    data={pieData}
-                    dataKey="value"
-                    nameKey="name"
+                    data={failedOrders}
+                    dataKey="value" // 'value' from GET /dashboard/failed-orders
+                    nameKey="reason" // 'reason' from GET /dashboard/failed-orders
                     cx="50%"
                     cy="50%"
-                    outerRadius={60}
+                    innerRadius={60}
+                    outerRadius={80}
+                    paddingAngle={5}
                   >
-                    {pieData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={entry.color} />
+                    {failedOrders.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={FAILED_ORDER_COLORS[index % FAILED_ORDER_COLORS.length]} />
                     ))}
                   </Pie>
+                  <Tooltip />
                 </PieChart>
               </ResponsiveContainer>
             </div>
+            <div className="space-y-3">
+              {failedOrders.map((entry, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: FAILED_ORDER_COLORS[index % FAILED_ORDER_COLORS.length] }}
+                  ></div>
+                  <span className="text-sm font-medium text-gray-700">
+                    {entry.reason}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
+        </div>
+      </div>
+
+      {/* 4. Recent Settlements Table */}
+      <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+        <h4 className="font-semibold text-gray-800 mb-4">
+          Recent Settlements
+        </h4>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                {/* ... table headers ... */}
+                <th className="px-4 py-3 text-left">
+                  <input type="checkbox" className="rounded" />
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  Payout ID
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  Merchant Name
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  Amount Paid
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  Status
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  No. Of Orders
+                </th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  Date
+                </th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {recentSettlementsData.map((item) => (
+                <tr key={item.id} className="hover:bg-gray-50">
+                  <td className="px-4 py-4">
+                    <input type="checkbox" className="rounded" />
+                  </td>
+                  <td className="px-4 py-4 text-sm text-gray-700">
+                    {item.id}
+                  </td>
+                  <td className="px-4 py-4 text-sm font-medium text-gray-900">
+                    {item.merchant}
+                  </td>
+                  <td className="px-4 py-4 text-sm text-gray-700">
+                    {item.amount}
+                  </td>
+                  <td className="px-4 py-4">
+                    <StatusLabel status={item.status} />
+                  </td>
+                  <td className="px-4 py-4 text-sm text-gray-700">
+                    {item.orders}
+                  </td>
+                  <td className="px-4 py-4 text-sm text-gray-700">
+                    {item.date}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   );
 }
-
-export default Dashboard;
